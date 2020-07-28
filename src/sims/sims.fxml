@@ -10,7 +10,7 @@
       <AnchorPane layoutX="42.0" layoutY="83.0" prefHeight="400.0" prefWidth="500.0" style="-fx-border-color: black">
          <children>
             <Text layoutX="14.0" layoutY="32.0" style="-fx-font-size: 18; -fx-font-family: SimSun;" text="Parts" wrappingWidth="70.470703125" />
-             <Button layoutX="250.0" layoutY="11.0" prefHeight="28.0" prefWidth="70.0" text="Search" />
+             <Button fx:id="searchParts" layoutX="250.0" layoutY="11.0" onAction="#searchPartsButton" prefHeight="28.0" prefWidth="70.0" text="Search" />
              <TextField layoutX="330.0" layoutY="13.0" prefHeight="28.0" prefWidth="149.0" />
             <TableView layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="471.0">
               <columns>
@@ -20,14 +20,14 @@
                 <TableColumn prefWidth="118.0" text="Price/Cost per Unit" />
               </columns>
             </TableView>
-            <Button layoutX="186.0" layoutY="285.0" prefHeight="40.0" prefWidth="90.0" text="Add" />
-            <Button layoutX="284.0" layoutY="285.0" prefHeight="40.0" prefWidth="90.0" text="Modify" />
-            <Button layoutX="384.0" layoutY="285.0" prefHeight="40.0" prefWidth="90.0" text="Delete" />
+            <Button fx:id="addParts" layoutX="186.0" layoutY="285.0" onAction="#addPartButton" prefHeight="40.0" prefWidth="90.0" text="Add" />
+            <Button fx:id="modifyParts" layoutX="284.0" layoutY="285.0" onAction="#modifyPartButton" prefHeight="40.0" prefWidth="90.0" text="Modify" />
+            <Button fx:id="deleteParts" layoutX="384.0" layoutY="285.0" onAction="#deletePartButton" prefHeight="40.0" prefWidth="90.0" text="Delete" />
          </children></AnchorPane>
       <AnchorPane layoutX="639.0" layoutY="83.0" prefHeight="400.0" prefWidth="500.0" style="-fx-border-color: black">
          <children>
             <Text layoutX="14.0" layoutY="38.0" style="-fx-font-size: 18; -fx-font-family: SimSun;" text="Products" wrappingWidth="83.470703125" />
-            <Button layoutX="253.0" layoutY="17.0" prefHeight="28.0" prefWidth="70.0" text="Search" />
+            <Button fx:id="searchProducts" layoutX="253.0" layoutY="17.0" onAction="#searchProductsButton" prefHeight="28.0" prefWidth="70.0" text="Search" />
             <TextField layoutX="331.0" layoutY="17.0" prefHeight="28.0" prefWidth="149.0" />
             <TableView layoutX="15.0" layoutY="58.0" prefHeight="200.0" prefWidth="471.0">
                <columns>
@@ -37,9 +37,9 @@
                   <TableColumn prefWidth="90.0" text="Price per Unit" />
                </columns>
             </TableView>
-            <Button layoutX="187.0" layoutY="285.0" prefHeight="40.0" prefWidth="90.0" text="Add" />
-            <Button layoutX="285.0" layoutY="285.0" prefHeight="40.0" prefWidth="90.0" text="Modify" />
-            <Button layoutX="385.0" layoutY="285.0" prefHeight="40.0" prefWidth="90.0" text="Delete" />
+            <Button fx:id="addProducts" layoutX="187.0" layoutY="285.0" onAction="#addProductButton" prefHeight="40.0" prefWidth="90.0" text="Add" />
+            <Button fx:id="modifyProducts" layoutX="285.0" layoutY="285.0" onAction="#modifyProductButton" prefHeight="40.0" prefWidth="90.0" text="Modify" />
+            <Button fx:id="deleteProducts" layoutX="385.0" layoutY="285.0" onAction="#deleteProductButton" prefHeight="40.0" prefWidth="90.0" text="Delete" />
          </children>
       </AnchorPane>
       <Button fx:id="exitButton" layoutX="1029.0" layoutY="506.0" onAction="#exit" prefHeight="50.0" prefWidth="110.0" text="Exit" />
