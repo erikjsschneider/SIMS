@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -31,9 +32,9 @@ public class Controller implements Initializable {
 
     @FXML
     public void addPartButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader addPartLoader = new FXMLLoader(getClass().getResource("AddParts.fxml"));
+        Parent addPartRoot = (Parent) addPartLoader.load();
         Stage addPartStage = new Stage();
-        FXMLLoader addPartLoader = new FXMLLoader();
-        Pane addPartRoot = addPartLoader.load(getClass().getResource("AddParts.fxml").openStream());
         addPartStage.setScene(new Scene(addPartRoot,600,600));
         addPartStage.showAndWait();
 
@@ -57,11 +58,21 @@ public class Controller implements Initializable {
     }
 
     @ FXML
-    public void addProductButton(ActionEvent actionEvent) {
+    public void addProductButton(ActionEvent actionEvent) throws IOException {
+        Stage addProductStage = new Stage();
+        FXMLLoader addProductLoader = new FXMLLoader();
+        Pane addPartRoot = addProductLoader.load(getClass().getResource("ModifyParts.fxml").openStream());
+        addProductStage.setScene(new Scene(addPartRoot,600,600));
+        addProductStage.showAndWait();
     }
 
     @FXML
-    public void modifyProductButton(ActionEvent actionEvent) {
+    public void modifyProductButton(ActionEvent actionEvent) throws IOException {
+        Stage modProductStage = new Stage();
+        FXMLLoader modProductLoader = new FXMLLoader();
+        Pane addPartRoot = modProductLoader.load(getClass().getResource("ModifyParts.fxml").openStream());
+        modProductStage.setScene(new Scene(addPartRoot,600,600));
+        modProductStage.showAndWait();
     }
 
     @FXML

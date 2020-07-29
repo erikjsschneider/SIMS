@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sims.AddParts"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: darkgrey" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sims.AddParts">
+    <Text layoutX="25.0" layoutY="40.0" style="-fx-font-size: 20; -fx-font-family: SimSun;" text="Add Part" />
+   <HBox layoutX="170.0" layoutY="15.0" prefHeight="35.0" prefWidth="400.0">
+      <children>
+         <RadioButton fx:id="inhouse" mnemonicParsing="false" text="In-House">
+            <padding>
+               <Insets top="10.0" />
+            </padding>
+         </RadioButton>
+         <RadioButton fx:id="outsourced" mnemonicParsing="false" text="Outsourced">
+            <padding>
+               <Insets left="100.0" top="10.0" />
+            </padding>
+         </RadioButton>
+      </children>
+   </HBox>
+   <Text layoutX="70" layoutY="110" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="ID" />
+   <TextField layoutX="170.0" layoutY="80.0" prefHeight="45.0" prefWidth="160.0" disable="true" text="Auto Gen - Disabled" style="-fx-background-color: darkgrey; -fx-border-style: solid"/>
+   <Text layoutX="70" layoutY="170" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Name" />
+   <TextField layoutX="170.0" layoutY="140.0" prefHeight="45.0" prefWidth="160.0" style="-fx-border-style: solid" />
+   <Text layoutX="70" layoutY="230" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Inv" />
+   <TextField layoutX="170.0" layoutY="200.0" prefHeight="45.0" prefWidth="160.0" style="-fx-border-style: solid" />
+   <Text layoutX="70" layoutY="290" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Price/Cost" />
+   <TextField layoutX="170.0" layoutY="260.0" prefHeight="45.0" prefWidth="160.0" style="-fx-border-style: solid" />
+   <Text layoutX="70" layoutY="350" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Max" />
+   <TextField layoutX="170.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" style="-fx-border-style: solid" />
+   <Text layoutX="350" layoutY="350" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Min" />
+   <TextField layoutX="170.0" layoutY="380.0" prefHeight="45.0" prefWidth="160.0" style="-fx-border-style: solid" />
+   <Text layoutX="70" layoutY="410" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Company Name" />
+   <TextField layoutX="400.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" style="-fx-border-style: solid" />
+   <Button fx:id="saveParts" layoutX="300.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Save" />
+   <Button fx:id="cancelParts" layoutX="450.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Cancel" />
 </AnchorPane>
