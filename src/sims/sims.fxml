@@ -23,7 +23,9 @@
             <Button fx:id="addParts" layoutX="186.0" layoutY="285.0" onAction="#addPartButton" prefHeight="40.0" prefWidth="90.0" text="Add" />
             <Button fx:id="modifyParts" layoutX="284.0" layoutY="285.0" onAction="#modifyPartButton" prefHeight="40.0" prefWidth="90.0" text="Modify" />
             <Button fx:id="deleteParts" layoutX="384.0" layoutY="285.0" onAction="#deletePartButton" prefHeight="40.0" prefWidth="90.0" text="Delete" />
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
+
       <AnchorPane layoutX="639.0" layoutY="83.0" prefHeight="400.0" prefWidth="500.0" style="-fx-border-color: black">
          <children>
             <Text layoutX="14.0" layoutY="38.0" style="-fx-font-size: 18; -fx-font-family: SimSun;" text="Products" wrappingWidth="83.470703125" />
@@ -42,6 +44,7 @@
             <Button fx:id="deleteProducts" layoutX="385.0" layoutY="285.0" onAction="#deleteProductButton" prefHeight="40.0" prefWidth="90.0" text="Delete" />
          </children>
       </AnchorPane>
+
       <Button fx:id="exitButton" layoutX="1029.0" layoutY="506.0" onAction="#exit" prefHeight="50.0" prefWidth="110.0" text="Exit" />
    </children>
 </AnchorPane>

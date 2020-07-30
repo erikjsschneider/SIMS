@@ -35,7 +35,7 @@ public class Controller implements Initializable {
         FXMLLoader addPartLoader = new FXMLLoader(getClass().getResource("AddParts.fxml"));
         Parent addPartRoot = (Parent) addPartLoader.load();
         Stage addPartStage = new Stage();
-        addPartStage.setScene(new Scene(addPartRoot,600,600));
+        addPartStage.setScene(new Scene(addPartRoot, 600, 600));
         addPartStage.showAndWait();
 
     }
@@ -45,7 +45,7 @@ public class Controller implements Initializable {
         FXMLLoader modPartLoader = new FXMLLoader(getClass().getResource("ModifyParts.fxml"));
         Parent modPartRoot = (Parent) modPartLoader.load();
         Stage modPartStage = new Stage();
-        modPartStage.setScene(new Scene(modPartRoot,600,600));
+        modPartStage.setScene(new Scene(modPartRoot, 600, 600));
         modPartStage.showAndWait();
     }
 
@@ -57,21 +57,21 @@ public class Controller implements Initializable {
     public void searchProductsButton(ActionEvent actionEvent) {
     }
 
-    @ FXML
+    @FXML
     public void addProductButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader addProductLoader = new FXMLLoader(getClass().getResource("AddProducts.fxml"));
+        Parent addProductRoot = (Parent) addProductLoader.load();
         Stage addProductStage = new Stage();
-        FXMLLoader addProductLoader = new FXMLLoader();
-        Pane addPartRoot = addProductLoader.load(getClass().getResource("ModifyParts.fxml").openStream());
-        addProductStage.setScene(new Scene(addPartRoot,600,600));
+        addProductStage.setScene(new Scene(addProductRoot, 1200, 800));
         addProductStage.showAndWait();
     }
 
     @FXML
     public void modifyProductButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader modProductLoader = new FXMLLoader(getClass().getResource("ModifyProducts.fxml"));
+        Parent modProductRoot = (Parent) modProductLoader.load();
         Stage modProductStage = new Stage();
-        FXMLLoader modProductLoader = new FXMLLoader();
-        Pane addPartRoot = modProductLoader.load(getClass().getResource("ModifyParts.fxml").openStream());
-        modProductStage.setScene(new Scene(addPartRoot,600,600));
+        modProductStage.setScene(new Scene(modProductRoot, 1200, 800));
         modProductStage.showAndWait();
     }
 

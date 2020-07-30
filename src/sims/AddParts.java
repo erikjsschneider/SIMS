@@ -10,6 +10,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class AddParts {
 
     @FXML
@@ -49,9 +51,9 @@ public class AddParts {
 //        }
     }
 
-    @FXML
-    public void handleSavePartsButton(ActionEvent actionEvent) {
-        if (this.inhouse.isSelected() || this.outsourced.isSelected()) {
+    public void handleSavePartsButton(ActionEvent actionEvent) throws IOException {
+        if (this.partsGroup.getSelectedToggle().equals(this.inhouse)
+                || this.partsGroup.getSelectedToggle().equals(this.outsourced)) {
             this.savePartsButton.setDisable(false);
         } else {
             this.savePartsButton.setDisable(true);
@@ -59,8 +61,8 @@ public class AddParts {
 
     }
 
-    @FXML
-    public void handleCancelPartsButton(ActionEvent actionEvent) {
+    public void handleCancelPartsButton(ActionEvent actionEvent) throws IOException {
+//        this.addPartStage.hide();
         Stage stage = (Stage) cancelPartsButton.getScene().getWindow();
         stage.hide();
     }
@@ -79,7 +81,7 @@ public class AddParts {
 //        }
 //    }
 
-    public void partsTypeRadioButtonChanged() {
+    public void partsTypeRadioButtonChanged() throws IOException {
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
             machineIdText.setVisible(true);
             machineIdField.setVisible(true);
