@@ -42,10 +42,10 @@ public class Controller implements Initializable {
 
     @FXML
     public void modifyPartButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader modPartLoader = new FXMLLoader(getClass().getResource("ModifyParts.fxml"));
+        Parent modPartRoot = (Parent) modPartLoader.load();
         Stage modPartStage = new Stage();
-        FXMLLoader modPartLoader = new FXMLLoader();
-        Pane addPartRoot = modPartLoader.load(getClass().getResource("ModifyParts.fxml").openStream());
-        modPartStage.setScene(new Scene(addPartRoot,600,600));
+        modPartStage.setScene(new Scene(modPartRoot,600,600));
         modPartStage.showAndWait();
     }
 
