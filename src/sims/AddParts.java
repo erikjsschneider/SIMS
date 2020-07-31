@@ -2,12 +2,7 @@ package sims;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,13 +16,13 @@ public class AddParts {
     public RadioButton outsourced;
 
     @FXML
-    public Text companyNameText;
+    public Label companyNameText;
 
     @FXML
     public TextField companyNameField;
 
     @FXML
-    public Text machineIdText;
+    public Label machineIdText;
 
     @FXML
     public TextField machineIdField;
@@ -45,10 +40,6 @@ public class AddParts {
         partsGroup = new ToggleGroup();
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
-//        if (outsourced.isSelected()) {
-//            companyNameText.setVisible(true);
-//            companyNameField.setVisible(true);
-//        }
     }
 
     public void handleSavePartsButton(ActionEvent actionEvent) throws IOException {

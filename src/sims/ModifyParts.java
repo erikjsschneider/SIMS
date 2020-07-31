@@ -2,11 +2,7 @@ package sims;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class ModifyParts {
@@ -18,12 +14,12 @@ public class ModifyParts {
     public RadioButton outsourced;
 
     @FXML
-    public Text companyNameText;
+    public Label companyNameText;
 
     @FXML
     public TextField companyNameField;
     @FXML
-    public Text machineIdText;
+    public Label machineIdText;
 
     @FXML
     public TextField machineIdField;
