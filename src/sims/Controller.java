@@ -23,6 +23,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void exit(ActionEvent actionEvent) {
+        // Pop up a new window and ask if user is sure they want to exit...Yes or No
         Platform.exit();
     }
 

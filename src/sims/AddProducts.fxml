@@ -7,28 +7,30 @@
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: darkgrey"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sims.AddProducts">
-    <Text layoutX="45.0" layoutY="75.0" style="-fx-font-size: 20; -fx-font-family: SimSun;" text="Add Product"/>
+    <Text layoutX="45.0" layoutY="75.0" style="-fx-font-size: 20; -fx-font-family: SimSun;" text="Add Product"
+          underline="true"/>
     <Button fx:id="searchProducts" layoutX="620.0" layoutY="52.0" onAction="#searchProductsButton" prefHeight="28.0"
-            prefWidth="70.0" text="Search"/>
-    <TextField layoutX="700.0" layoutY="52.5" prefHeight="29.0" prefWidth="250.0"/>
+            prefWidth="70.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Search"/>
+    <TextField layoutX="700.0" layoutY="52.5" prefHeight="29.0" prefWidth="250.0"
+               style="-fx-border-style: solid; -fx-border-color: black;"/>
 
     <Text layoutX="30" layoutY="180" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="ID"/>
-    <TextField disable="true" layoutX="130.0" layoutY="150.0" prefHeight="45.0" prefWidth="160.0"
+    <TextField disable="true" layoutX="120.0" layoutY="150.0" prefHeight="45.0" prefWidth="200.0"
                style="-fx-background-color: darkgrey; -fx-border-style: solid" text="Auto Gen - Disabled"/>
-    <Text layoutX="70" layoutY="170" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Name"/>
-    <TextField layoutX="170.0" layoutY="140.0" prefHeight="45.0" prefWidth="160.0" promptText="Part Name"
+    <Text layoutX="30" layoutY="240" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Name"/>
+    <TextField layoutX="120.0" layoutY="210.0" prefHeight="45.0" prefWidth="200.0" promptText="Part Name"
                style="-fx-border-style: solid"/>
-    <Text layoutX="70" layoutY="230" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Inv"/>
-    <TextField layoutX="170.0" layoutY="200.0" prefHeight="45.0" prefWidth="160.0" promptText="Inv"
+    <Text layoutX="30" layoutY="300" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Inv"/>
+    <TextField layoutX="120.0" layoutY="270.0" prefHeight="45.0" prefWidth="120.0" promptText="Inv"
                style="-fx-border-style: solid"/>
-    <Text layoutX="70" layoutY="290" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Price/Cost"/>
-    <TextField layoutX="170.0" layoutY="260.0" prefHeight="45.0" prefWidth="160.0" promptText="Price/Cost"
+    <Text layoutX="30" layoutY="360" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Price/Cost"/>
+    <TextField layoutX="120.0" layoutY="330.0" prefHeight="45.0" prefWidth="120.0" promptText="Price/Cost"
                style="-fx-border-style: solid"/>
-    <Text layoutX="70" layoutY="350" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Max"/>
-    <TextField layoutX="170.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" promptText="Max"
+    <Text layoutX="30" layoutY="420" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Max"/>
+    <TextField layoutX="120.0" layoutY="390.0" prefHeight="45.0" prefWidth="120.0" promptText="Max"
                style="-fx-border-style: solid"/>
-    <Text layoutX="350" layoutY="350" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Min"/>
-    <TextField layoutX="400.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" promptText="Min"
+    <Text layoutX="280" layoutY="420" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Min"/>
+    <TextField layoutX="320.0" layoutY="390.0" prefHeight="45.0" prefWidth="120.0" promptText="Min"
                style="-fx-border-style: solid"/>
 
     <TableView layoutX="500.0" layoutY="110.0" prefHeight="200.0" prefWidth="600.0"
@@ -41,7 +43,7 @@
         </columns>
     </TableView>
     <Button fx:id="addProducts" layoutX="1000.0" layoutY="330.0" onAction="#addProductsButton" prefHeight="40.0"
-            prefWidth="90.0" text="Add" style="-fx-border-style: solid; -fx-border-color: black;"/>
+            prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Add"/>
 
     <TableView layoutX="500.0" layoutY="420.0" prefHeight="200.0" prefWidth="600.0"
                style="-fx-border-style: solid; -fx-border-color: black; -fx-grid-lines-visible: true;">
@@ -53,9 +55,9 @@
         </columns>
     </TableView>
     <Button fx:id="deleteProducts" layoutX="1000.0" layoutY="640.0" onAction="#deleteProductsButton" prefHeight="40.0"
-            prefWidth="90.0" text="Delete" style="-fx-border-style: solid; -fx-border-color: black;"/>
+            prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Delete"/>
     <Button fx:id="saveProducts" layoutX="890.0" layoutY="700.0" onAction="#deleteProductsButton" prefHeight="40.0"
-            prefWidth="90.0" text="Save" style="-fx-border-style: solid; -fx-border-color: black;"/>
+            prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Save"/>
     <Button fx:id="cancelProducts" layoutX="1000.0" layoutY="700.0" onAction="#deleteProductsButton" prefHeight="40.0"
-            prefWidth="90.0" text="Cancel" style="-fx-border-style: solid; -fx-border-color: black;"/>
+            prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Cancel"/>
 </AnchorPane>
