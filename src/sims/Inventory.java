@@ -53,5 +53,6 @@ public class Inventory {
 //
     public ObservableList<Product> getAllProducts() {
 
+        return null;
     }
 }

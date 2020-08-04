@@ -16,6 +16,24 @@ public class AddParts {
     public RadioButton outsourced;
 
     @FXML
+    public TextField partId;
+
+    @FXML
+    public TextField partName;
+
+    @FXML
+    public TextField partInv;
+
+    @FXML
+    public TextField partPrice;
+
+    @FXML
+    public TextField partMax;
+
+    @FXML
+    public TextField partMin;
+
+    @FXML
     public Label companyNameText;
 
     @FXML
@@ -42,20 +60,25 @@ public class AddParts {
         this.outsourced.setToggleGroup(partsGroup);
     }
 
-    public void handleSavePartsButton(ActionEvent actionEvent) throws IOException {
-        if (this.partsGroup.getSelectedToggle().equals(this.inhouse)
-                || this.partsGroup.getSelectedToggle().equals(this.outsourced)) {
-            this.savePartsButton.setDisable(false);
-        } else {
-            this.savePartsButton.setDisable(true);
-        }
+    @FXML
+    public void handleSavePartsButton() throws IOException {
+//        if (partsGroup.getSelectedToggle().equals(inhouse)
+//                || partsGroup.getSelectedToggle().equals(outsourced)) {
+//            this.savePartsButton.setDisable(false);
+//        } else {
+//            this.savePartsButton.setDisable(true);
+//        }
 
+        if (partName.equals("")) {
+            savePartsButton.setDisable(false);
+        } else {
+            savePartsButton.setDisable(true);
+        }
     }
 
-    public void handleCancelPartsButton(ActionEvent actionEvent) throws IOException {
-//        this.addPartStage.hide();
-        Stage stage = (Stage) cancelPartsButton.getScene().getWindow();
-        stage.hide();
+    @FXML
+    public void handleCancelPartsButton() throws IOException {
+        cancelPartsButton.getScene().getWindow().hide();
     }
 
 //    public void partsTypeRadioButton() {

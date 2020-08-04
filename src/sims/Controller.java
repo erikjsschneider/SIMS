@@ -37,7 +37,7 @@ public class Controller implements Initializable {
         Parent addPartRoot = (Parent) addPartLoader.load();
         Stage addPartStage = new Stage();
         addPartStage.setScene(new Scene(addPartRoot, 600, 600));
-        addPartStage.showAndWait();
+        addPartStage.show();
 
     }
 

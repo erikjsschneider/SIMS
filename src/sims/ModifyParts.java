@@ -48,8 +48,7 @@ public class ModifyParts {
 
     @FXML
     public void handleCancelPartsButton(ActionEvent actionEvent) {
-        Stage stage = (Stage) cancelPartsButton.getScene().getWindow();
-        stage.hide();
+        cancelPartsButton.getScene().getWindow().hide();
     }
 
     public void partsTypeRadioButton() {
