@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: darkgrey"
+            fx:controller="View_Controller.ExitVerify" prefHeight="400.0" prefWidth="400.0">
+    <Label layoutX="40" layoutY="95" style="-fx-font-size: 18; -fx-font-family: SimSun;"
+           text="Are you sure you would like to exit?"/>
+    <Button fx:id="exitYesButton" layoutX="60.0" layoutY="200.0" mnemonicParsing="false"
+            onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="120.0"
+            style="-fx-border-style: solid; -fx-border-color: black;" text="Yes"/>
+    <Button fx:id="exitNoButton" layoutX="220.0" layoutY="200.0" mnemonicParsing="false"
+            onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="120.0"
+            style="-fx-border-style: solid; -fx-border-color: black;" text="No"/>
+</AnchorPane>
