@@ -1,11 +1,13 @@
 package View_Controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class Controller implements Initializable {
         FXMLLoader exitVerifyLoader = new FXMLLoader(getClass().getResource("ExitVerify.fxml"));
         Parent exitVerifyRoot = (Parent) exitVerifyLoader.load();
         Stage exitVerifyStage = new Stage();
+        exitVerifyStage.initModality(Modality.APPLICATION_MODAL);
         exitVerifyStage.setScene(new Scene(exitVerifyRoot, 400, 400));
         exitVerifyStage.show();
 //        Platform.exit();
@@ -39,6 +42,7 @@ public class Controller implements Initializable {
         FXMLLoader addPartLoader = new FXMLLoader(getClass().getResource("AddParts.fxml"));
         Parent addPartRoot = (Parent) addPartLoader.load();
         Stage addPartStage = new Stage();
+        addPartStage.initModality(Modality.APPLICATION_MODAL);
         addPartStage.setScene(new Scene(addPartRoot, 600, 600));
         addPartStage.show();
 //        Parent addPartLoader = FXMLLoader.load(getClass().getResource("AddParts.fxml"));
@@ -54,8 +58,9 @@ public class Controller implements Initializable {
         FXMLLoader modPartLoader = new FXMLLoader(getClass().getResource("ModifyParts.fxml"));
         Parent modPartRoot = (Parent) modPartLoader.load();
         Stage modPartStage = new Stage();
+        modPartStage.initModality(Modality.APPLICATION_MODAL);
         modPartStage.setScene(new Scene(modPartRoot, 600, 600));
-        modPartStage.showAndWait();
+        modPartStage.show();
     }
 
     @FXML
@@ -71,8 +76,9 @@ public class Controller implements Initializable {
         FXMLLoader addProductLoader = new FXMLLoader(getClass().getResource("AddProducts.fxml"));
         Parent addProductRoot = (Parent) addProductLoader.load();
         Stage addProductStage = new Stage();
+        addProductStage.initModality(Modality.APPLICATION_MODAL);
         addProductStage.setScene(new Scene(addProductRoot, 1200, 800));
-        addProductStage.showAndWait();
+        addProductStage.show();
     }
 
     @FXML
@@ -80,8 +86,9 @@ public class Controller implements Initializable {
         FXMLLoader modProductLoader = new FXMLLoader(getClass().getResource("ModifyProducts.fxml"));
         Parent modProductRoot = (Parent) modProductLoader.load();
         Stage modProductStage = new Stage();
+        modProductStage.initModality(Modality.APPLICATION_MODAL);
         modProductStage.setScene(new Scene(modProductRoot, 1200, 800));
-        modProductStage.showAndWait();
+        modProductStage.show();
     }
 
     @FXML
