@@ -1,9 +1,10 @@
 package View_Controller;
 
-import javafx.event.ActionEvent;
+import Model.Inhouse;
+import Model.Outsourced;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -16,22 +17,22 @@ public class AddParts {
     public RadioButton outsourced;
 
     @FXML
-    public TextField partId;
+    public TextField partIdField;
 
     @FXML
-    public TextField partName;
+    public TextField partNameField;
 
     @FXML
-    public TextField partInv;
+    public TextField partInvField;
 
     @FXML
-    public TextField partPrice;
+    public TextField partPriceField;
 
     @FXML
-    public TextField partMax;
+    public TextField partMaxField;
 
     @FXML
-    public TextField partMin;
+    public TextField partMinField;
 
     @FXML
     public Label companyNameText;
@@ -52,28 +53,60 @@ public class AddParts {
     public Button cancelPartsButton;
 
     private ToggleGroup partsGroup;
+    private int partId = 0;
 
     @FXML
     private void initialize() {
         partsGroup = new ToggleGroup();
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
+
+        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
+                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
+                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
+                        .or(Bindings.isEmpty(machineIdField.textProperty())
+                                .and(Bindings.isEmpty(companyNameField.textProperty()))))));
     }
 
     @FXML
     public void handleSavePartsButton() throws IOException {
-//        if (partsGroup.getSelectedToggle().equals(inhouse)
-//                || partsGroup.getSelectedToggle().equals(outsourced)) {
-//            this.savePartsButton.setDisable(false);
-//        } else {
-//            this.savePartsButton.setDisable(true);
-//        }
+        String partName = partNameField.getText();
+        String partInv = partInvField.getText();
+        String partPrice = partPriceField.getText();
+        String partMax = partMaxField.getText();
+        String partMin = partMinField.getText();
 
-        if (partName.equals("")) {
-            savePartsButton.setDisable(false);
-        } else {
-            savePartsButton.setDisable(true);
+        if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
+            String machineId = machineIdField.getText();
+
+            Inhouse inhousePart = new Inhouse();
+            inhousePart.setId(partId);
+            inhousePart.setName(partName);
+            inhousePart.setStock(Integer.parseInt(partInv));
+            inhousePart.setPrice(Double.parseDouble(partPrice));
+            inhousePart.setMax(Integer.parseInt(partMax));
+            inhousePart.setMin(Integer.parseInt(partMin));
+            inhousePart.setMachineId(Integer.parseInt(machineId));
         }
+
+        if (this.partsGroup.getSelectedToggle().equals(this.outsourced)) {
+            String companyName = companyNameField.getText();
+
+            Outsourced outsourcedPart = new Outsourced();
+            outsourcedPart.setId(partId);
+            outsourcedPart.setName(partName);
+            outsourcedPart.setStock(Integer.parseInt(partInv));
+            outsourcedPart.setPrice(Double.parseDouble(partPrice));
+            outsourcedPart.setMax(Integer.parseInt(partMax));
+            outsourcedPart.setMin(Integer.parseInt(partMin));
+            outsourcedPart.setCompanyName(companyName);
+        }
+
+        Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
+        saveSuccess.setContentText(partName + " added successfully.");
+        saveSuccess.show();
+
+        savePartsButton.getScene().getWindow().hide();
     }
 
     @FXML

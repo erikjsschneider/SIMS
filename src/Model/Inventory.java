@@ -1,6 +1,7 @@
 package Model;
 
 import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
@@ -11,8 +12,8 @@ import java.util.ListIterator;
 
 public class Inventory {
 
-    private ObservableList<Part> allParts;
-    private ObservableList<Product> allProducts;
+    private ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public void addPart(Part newPart) {
 

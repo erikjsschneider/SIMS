@@ -29,19 +29,19 @@
     <TextField disable="true" layoutX="170.0" layoutY="80.0" prefHeight="45.0" prefWidth="160.0"
                style="-fx-background-color: darkgrey; -fx-border-style: solid" text=""/>
     <Label layoutX="70" layoutY="155" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Name"/>
-    <TextField layoutX="170.0" layoutY="140.0" prefHeight="45.0" prefWidth="160.0" promptText="Part Name"
+    <TextField fx:id="partName" layoutX="170.0" layoutY="140.0" prefHeight="45.0" prefWidth="160.0" promptText="Part Name"
                style="-fx-border-style: solid"/>
     <Label layoutX="70" layoutY="215" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Inv"/>
-    <TextField layoutX="170.0" layoutY="200.0" prefHeight="45.0" prefWidth="160.0" promptText="Inv"
+    <TextField fx:id="inventory" layoutX="170.0" layoutY="200.0" prefHeight="45.0" prefWidth="160.0" promptText="Inv"
                style="-fx-border-style: solid"/>
     <Label layoutX="70" layoutY="275" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Price/Cost"/>
-    <TextField layoutX="170.0" layoutY="260.0" prefHeight="45.0" prefWidth="160.0" promptText="Price/Cost"
+    <TextField fx:id="price" layoutX="170.0" layoutY="260.0" prefHeight="45.0" prefWidth="160.0" promptText="Price/Cost"
                style="-fx-border-style: solid"/>
     <Label layoutX="70" layoutY="335" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Max"/>
-    <TextField layoutX="170.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" promptText="Max"
+    <TextField fx:id="max" layoutX="170.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" promptText="Max"
                style="-fx-border-style: solid"/>
     <Label layoutX="350" layoutY="335" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Min"/>
-    <TextField layoutX="400.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" promptText="Min"
+    <TextField fx:id="min" layoutX="400.0" layoutY="320.0" prefHeight="45.0" prefWidth="120.0" promptText="Min"
                style="-fx-border-style: solid"/>
     <Label fx:id="companyNameText" layoutX="70" layoutY="395" style="-fx-font-size: 14; -fx-font-family: SimSun;"
           text="Company Name" visible="false"/>

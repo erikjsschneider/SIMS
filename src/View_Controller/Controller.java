@@ -1,12 +1,13 @@
 package View_Controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -15,6 +16,36 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+
+    @FXML
+    public TableView partsTable;
+
+    @FXML
+    public  TableView prodTable;
+
+    @FXML
+    public TableColumn partId;
+
+    @FXML
+    public TableColumn partName;
+
+    @FXML
+    public TableColumn inventoryPart;
+
+    @FXML
+    public TableColumn pricePart;
+
+    @FXML
+    public TableColumn productId;
+
+    @FXML
+    public TableColumn productName;
+
+    @FXML
+    public TableColumn inventoryProd;
+
+    @FXML
+    public TableColumn priceProd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,7 +61,6 @@ public class Controller implements Initializable {
         exitVerifyStage.initModality(Modality.APPLICATION_MODAL);
         exitVerifyStage.setScene(new Scene(exitVerifyRoot, 400, 400));
         exitVerifyStage.show();
-//        Platform.exit();
     }
 
     @FXML
@@ -45,11 +75,6 @@ public class Controller implements Initializable {
         addPartStage.initModality(Modality.APPLICATION_MODAL);
         addPartStage.setScene(new Scene(addPartRoot, 600, 600));
         addPartStage.show();
-//        Parent addPartLoader = FXMLLoader.load(getClass().getResource("AddParts.fxml"));
-//        Scene addPartScene = new Scene(addPartLoader);
-//        Stage addPartStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        addPartStage.setScene(addPartScene);
-//        addPartStage.show();
 
     }
 

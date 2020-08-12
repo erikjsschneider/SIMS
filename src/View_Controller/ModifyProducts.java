@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 
 public class ModifyProducts {
 
+    @FXML
+
+
     public Button searchProductsButton;
     public Button addProductsButton;
     public Button deleteProductsButton;

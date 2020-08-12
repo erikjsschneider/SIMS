@@ -8,6 +8,8 @@ public class Outsourced extends Part {
         super(id, name, price, stock, min, max);
     }
 
+    public Outsourced() {}
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }

@@ -52,7 +52,7 @@
     <TextField fx:id="machineIdField" layoutX="170.0" layoutY="380.0" prefHeight="45.0" prefWidth="160.0"
                promptText="Mach ID" style="-fx-border-style: solid" visible="false"/>
 
-    <Button fx:id="savePartsButton" disable="true" layoutX="300.0" layoutY="490.0" mnemonicParsing="false"
+    <Button fx:id="savePartsButton" layoutX="300.0" layoutY="490.0" mnemonicParsing="false"
             onAction="#handleSavePartsButton" prefHeight="50.0" prefWidth="120.0"
             style="-fx-border-style: solid; -fx-border-color: black;" text="Save"/>
     <Button fx:id="cancelPartsButton" layoutX="450.0" layoutY="490.0" mnemonicParsing="false"

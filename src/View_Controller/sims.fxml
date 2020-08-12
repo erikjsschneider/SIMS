@@ -18,12 +18,12 @@
                         text="Search"/>
                 <TextField layoutX="330.0" layoutY="13.0" prefHeight="28.0" prefWidth="149.0"
                            style="-fx-border-style: solid; -fx-border-color: black;"/>
-                <TableView layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="471.0">
+                <TableView fx:id="partsTable" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="471.0">
                     <columns>
-                        <TableColumn prefWidth="59.0" text="Part ID"/>
-                        <TableColumn prefWidth="198.0" text="Part Name"/>
-                        <TableColumn prefWidth="95.0" text="Inventory Level"/>
-                        <TableColumn prefWidth="118.0" text="Price/Cost per Unit"/>
+                        <TableColumn fx:id="partId" prefWidth="59.0" text="Part ID"/>
+                        <TableColumn fx:id="partName" prefWidth="198.0" text="Part Name"/>
+                        <TableColumn fx:id="inventoryPart" prefWidth="95.0" text="Inventory Level"/>
+                        <TableColumn fx:id="pricePart" prefWidth="118.0" text="Price/Cost per Unit"/>
                     </columns>
                 </TableView>
                 <Button fx:id="addParts" layoutX="186.0" layoutY="285.0" onAction="#addPartButton" prefHeight="40.0"
@@ -46,12 +46,12 @@
                         text="Search"/>
                 <TextField layoutX="331.0" layoutY="17.0" prefHeight="28.0" prefWidth="149.0"
                            style="-fx-border-style: solid; -fx-border-color: black;"/>
-                <TableView layoutX="15.0" layoutY="58.0" prefHeight="200.0" prefWidth="471.0">
+                <TableView fx:id="prodTable" layoutX="15.0" layoutY="58.0" prefHeight="200.0" prefWidth="471.0">
                     <columns>
-                        <TableColumn prefWidth="76.0" text="Product ID"/>
-                        <TableColumn prefWidth="203.0" text="Product Name"/>
-                        <TableColumn prefWidth="101.0" text="Inventory Level"/>
-                        <TableColumn prefWidth="90.0" text="Price per Unit"/>
+                        <TableColumn fx:id="productId" prefWidth="76.0" text="Product ID"/>
+                        <TableColumn fx:id="productName" prefWidth="203.0" text="Product Name"/>
+                        <TableColumn fx:id="inventoryProd" prefWidth="101.0" text="Inventory Level"/>
+                        <TableColumn fx:id="priceProd" prefWidth="90.0" text="Price per Unit"/>
                     </columns>
                 </TableView>
                 <Button fx:id="addProducts" layoutX="187.0" layoutY="285.0" onAction="#addProductButton"

@@ -1,9 +1,9 @@
 package View_Controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 public class ModifyParts {
 
@@ -12,6 +12,21 @@ public class ModifyParts {
 
     @FXML
     public RadioButton outsourced;
+
+    @FXML
+    public TextField partName;
+
+    @FXML
+    public TextField partInv;
+
+    @FXML
+    public TextField partPrice;
+
+    @FXML
+    public TextField partMax;
+
+    @FXML
+    public TextField partMin;
 
     @FXML
     public Label companyNameText;
@@ -35,10 +50,12 @@ public class ModifyParts {
         ToggleGroup partsGroup = new ToggleGroup();
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
-//        if (outsourced.isSelected()) {
-//            companyNameText.setVisible(true);
-//            companyNameField.setVisible(true);
-//        }
+
+//        savePartsButton.disableProperty().bind(Bindings.isEmpty(partName.textProperty())
+//                .or(Bindings.isEmpty(partInv.textProperty())).or(Bindings.isEmpty(partPrice.textProperty())
+//                        .or(Bindings.isEmpty(partMax.textProperty()).or(Bindings.isEmpty(partMin.textProperty()))
+//                                .or(Bindings.isEmpty(machineIdField.textProperty())
+//                                        .and(Bindings.isEmpty(companyNameField.textProperty()))))));
     }
 
     @FXML

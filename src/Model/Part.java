@@ -14,6 +14,10 @@ public abstract class Part {
 
     }
 
+    public Part() {
+
+    }
+
     public int getId() {
         return id;
     }
