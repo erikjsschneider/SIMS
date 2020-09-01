@@ -55,10 +55,14 @@ public class Inventory {
 //
 //    }
 //
-//    public ObservableList<Part> getAllParts() {
-//
-//    }
-//
+    public ObservableList<Part> getAllParts() {
+        return allParts;
+    }
+
+    public void setAllParts (ObservableList<Part> allParts) {
+        this.allParts = allParts;
+    }
+
     public ObservableList<Product> getAllProducts() {
         allProducts = new ObservableList<Product>() {
             @Override

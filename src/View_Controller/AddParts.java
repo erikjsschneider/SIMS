@@ -53,7 +53,9 @@ public class AddParts {
     public Button cancelPartsButton;
 
     private ToggleGroup partsGroup;
-    private int partId = 0;
+
+    @FXML
+    private TextField partId;
 
     @FXML
     private void initialize() {
@@ -61,11 +63,15 @@ public class AddParts {
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
 
-        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
-                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
-                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
-                        .or(Bindings.isEmpty(machineIdField.textProperty())
-                                .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+//        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
+//                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
+//                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
+//                        .or(Bindings.isEmpty(machineIdField.textProperty())
+//                                .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+    }
+
+    private void generatePartId() throws IOException {
+
     }
 
     @FXML
@@ -80,7 +86,7 @@ public class AddParts {
             String machineId = machineIdField.getText();
 
             Inhouse inhousePart = new Inhouse();
-            inhousePart.setId(partId);
+//            inhousePart.setId(Integer.parseInt(partId));
             inhousePart.setName(partName);
             inhousePart.setStock(Integer.parseInt(partInv));
             inhousePart.setPrice(Double.parseDouble(partPrice));
@@ -93,7 +99,7 @@ public class AddParts {
             String companyName = companyNameField.getText();
 
             Outsourced outsourcedPart = new Outsourced();
-            outsourcedPart.setId(partId);
+//            outsourcedPart.setId(Integer.parseInt(partId));
             outsourcedPart.setName(partName);
             outsourcedPart.setStock(Integer.parseInt(partInv));
             outsourcedPart.setPrice(Double.parseDouble(partPrice));
