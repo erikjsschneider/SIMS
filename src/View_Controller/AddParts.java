@@ -1,6 +1,7 @@
 package View_Controller;
 
 import Model.Inhouse;
+import Model.Inventory;
 import Model.Outsourced;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -11,51 +12,47 @@ import java.io.IOException;
 public class AddParts {
 
     @FXML
-    public RadioButton inhouse;
+    private RadioButton inhouse;
 
     @FXML
-    public RadioButton outsourced;
+    private RadioButton outsourced;
 
     @FXML
-    public TextField partIdField;
+    private TextField partNameField;
 
     @FXML
-    public TextField partNameField;
+    private TextField partInvField;
 
     @FXML
-    public TextField partInvField;
+    private TextField partPriceField;
 
     @FXML
-    public TextField partPriceField;
+    private TextField partMaxField;
 
     @FXML
-    public TextField partMaxField;
+    private TextField partMinField;
 
     @FXML
-    public TextField partMinField;
+    private Label companyNameText;
 
     @FXML
-    public Label companyNameText;
+    private TextField companyNameField;
 
     @FXML
-    public TextField companyNameField;
+    private Label machineIdText;
 
     @FXML
-    public Label machineIdText;
+    private TextField machineIdField;
 
     @FXML
-    public TextField machineIdField;
+    private Button savePartsButton;
 
     @FXML
-    public Button savePartsButton;
-
-    @FXML
-    public Button cancelPartsButton;
+    private Button cancelPartsButton;
 
     private ToggleGroup partsGroup;
 
-    @FXML
-    private TextField partId;
+    private int partId;
 
     @FXML
     private void initialize() {
@@ -75,37 +72,44 @@ public class AddParts {
     }
 
     @FXML
-    public void handleSavePartsButton() throws IOException {
+    private void handleSavePartsButton() throws IOException {
         String partName = partNameField.getText();
         String partInv = partInvField.getText();
         String partPrice = partPriceField.getText();
         String partMax = partMaxField.getText();
         String partMin = partMinField.getText();
+        partId++;
 
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
             String machineId = machineIdField.getText();
 
             Inhouse inhousePart = new Inhouse();
-//            inhousePart.setId(Integer.parseInt(partId));
+
+            inhousePart.setId(partId);
             inhousePart.setName(partName);
             inhousePart.setStock(Integer.parseInt(partInv));
             inhousePart.setPrice(Double.parseDouble(partPrice));
             inhousePart.setMax(Integer.parseInt(partMax));
             inhousePart.setMin(Integer.parseInt(partMin));
             inhousePart.setMachineId(Integer.parseInt(machineId));
+
+            Inventory.addPart(inhousePart);
         }
 
         if (this.partsGroup.getSelectedToggle().equals(this.outsourced)) {
             String companyName = companyNameField.getText();
 
             Outsourced outsourcedPart = new Outsourced();
-//            outsourcedPart.setId(Integer.parseInt(partId));
+
+            outsourcedPart.setId(partId);
             outsourcedPart.setName(partName);
             outsourcedPart.setStock(Integer.parseInt(partInv));
             outsourcedPart.setPrice(Double.parseDouble(partPrice));
             outsourcedPart.setMax(Integer.parseInt(partMax));
             outsourcedPart.setMin(Integer.parseInt(partMin));
             outsourcedPart.setCompanyName(companyName);
+
+            Inventory.addPart(outsourcedPart);
         }
 
         Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
@@ -116,7 +120,7 @@ public class AddParts {
     }
 
     @FXML
-    public void handleCancelPartsButton() throws IOException {
+    private void handleCancelPartsButton() throws IOException {
         cancelPartsButton.getScene().getWindow().hide();
     }
 

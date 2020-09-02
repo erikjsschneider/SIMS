@@ -1,5 +1,7 @@
 package View_Controller;
 
+import Model.Part;
+import Model.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,34 +20,34 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    public TableView partsTable;
+    public TableView<Part> partsTable;
 
     @FXML
-    public  TableView prodTable;
+    public TableView<Product> prodTable;
 
     @FXML
-    public TableColumn partId;
+    public TableColumn<Part, Integer> partId;
 
     @FXML
-    public TableColumn partName;
+    public TableColumn<Part, String> partName;
 
     @FXML
-    public TableColumn inventoryPart;
+    public TableColumn<Part, Integer> inventoryPart;
 
     @FXML
-    public TableColumn pricePart;
+    public TableColumn<Part, Double> pricePart;
 
     @FXML
-    public TableColumn productId;
+    public TableColumn<Product, Integer> productId;
 
     @FXML
-    public TableColumn productName;
+    public TableColumn<Product, String> productName;
 
     @FXML
-    public TableColumn inventoryProd;
+    public TableColumn<Product, Integer> inventoryProd;
 
     @FXML
-    public TableColumn priceProd;
+    public TableColumn<Product, Double> priceProd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
