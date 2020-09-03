@@ -1,5 +1,6 @@
 package View_Controller;
 
+import Model.Inventory;
 import Model.Part;
 import Model.Product;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -51,7 +53,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        TableView<Part> partsTable = new TableView<>(Inventory.getAllParts());
+        partId = new TableColumn<>("Part ID");
+        partId.setCellValueFactory(new PropertyValueFactory<>("partId"));
+        partsTable.getColumns().add(partId);
     }
 
     @FXML

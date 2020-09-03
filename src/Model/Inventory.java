@@ -4,6 +4,7 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -12,11 +13,13 @@ import java.util.ListIterator;
 
 public class Inventory {
 
-    private ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList(
+            new Inhouse(1, "First", 5, 2.50, 10, 1, 20));
+
     private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public static void addPart(Part newPart) {
-        
+
     }
 
     public void addProduct(Product newProduct) {
@@ -55,7 +58,7 @@ public class Inventory {
 //
 //    }
 //
-    public ObservableList<Part> getAllParts() {
+    public static ObservableList<Part> getAllParts() {
         return allParts;
     }
 
