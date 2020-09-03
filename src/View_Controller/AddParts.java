@@ -3,13 +3,14 @@ package View_Controller;
 import Model.Inhouse;
 import Model.Inventory;
 import Model.Outsourced;
+import Model.Part;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class AddParts {
+public class AddParts extends Part {
 
     @FXML
     private RadioButton inhouse;
@@ -60,11 +61,11 @@ public class AddParts {
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
 
-//        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
-//                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
-//                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
-//                        .or(Bindings.isEmpty(machineIdField.textProperty())
-//                                .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
+                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
+                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
+                        .or(Bindings.isEmpty(machineIdField.textProperty())
+                                .and(Bindings.isEmpty(companyNameField.textProperty()))))));
     }
 
     private void generatePartId() throws IOException {
@@ -81,42 +82,70 @@ public class AddParts {
         partId++;
 
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
-            String machineId = machineIdField.getText();
+            try {
+                String machineId = machineIdField.getText();
 
-            Inhouse inhousePart = new Inhouse();
+                Inhouse inhousePart = new Inhouse();
 
-            inhousePart.setId(partId);
-            inhousePart.setName(partName);
-            inhousePart.setStock(Integer.parseInt(partInv));
-            inhousePart.setPrice(Double.parseDouble(partPrice));
-            inhousePart.setMax(Integer.parseInt(partMax));
-            inhousePart.setMin(Integer.parseInt(partMin));
-            inhousePart.setMachineId(Integer.parseInt(machineId));
+                inhousePart.setId(partId);
+                inhousePart.setName(partName);
+                inhousePart.setStock(Integer.parseInt(partInv));
+                inhousePart.setPrice(Double.parseDouble(partPrice));
+                inhousePart.setMax(Integer.parseInt(partMax));
+                inhousePart.setMin(Integer.parseInt(partMin));
+                inhousePart.setMachineId(Integer.parseInt(machineId));
 
-            Inventory.addPart(inhousePart);
+                Inventory.addPart(inhousePart);
+
+                Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
+                saveSuccess.setContentText(partName + " added successfully.");
+                saveSuccess.show();
+
+                savePartsButton.getScene().getWindow().hide();
+
+            } catch(Exception e) {
+                Alert wrongInput = new Alert(Alert.AlertType.ERROR);
+                wrongInput.setContentText("Invalid input type. \n" +
+                        "Please enter a string for part name, and numbers for all other fields.");
+                wrongInput.showAndWait();
+            }
         }
 
         if (this.partsGroup.getSelectedToggle().equals(this.outsourced)) {
-            String companyName = companyNameField.getText();
+            try {
+                String companyName = companyNameField.getText();
 
-            Outsourced outsourcedPart = new Outsourced();
+                Outsourced outsourcedPart = new Outsourced();
 
-            outsourcedPart.setId(partId);
-            outsourcedPart.setName(partName);
-            outsourcedPart.setStock(Integer.parseInt(partInv));
-            outsourcedPart.setPrice(Double.parseDouble(partPrice));
-            outsourcedPart.setMax(Integer.parseInt(partMax));
-            outsourcedPart.setMin(Integer.parseInt(partMin));
-            outsourcedPart.setCompanyName(companyName);
+                outsourcedPart.setId(partId);
+                outsourcedPart.setName(partName);
+                outsourcedPart.setStock(Integer.parseInt(partInv));
+                outsourcedPart.setPrice(Double.parseDouble(partPrice));
+                outsourcedPart.setMax(Integer.parseInt(partMax));
+                outsourcedPart.setMin(Integer.parseInt(partMin));
+                outsourcedPart.setCompanyName(companyName);
 
-            Inventory.addPart(outsourcedPart);
+                Inventory.addPart(outsourcedPart);
+
+                Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
+                saveSuccess.setContentText(partName + " added successfully.");
+                saveSuccess.show();
+
+                savePartsButton.getScene().getWindow().hide();
+
+            } catch(Exception e) {
+                Alert wrongInput = new Alert(Alert.AlertType.ERROR);
+                wrongInput.setContentText("Invalid input type. \n" +
+                        "Please enter strings for part name and company name, and numbers for all other fields.");
+                wrongInput.showAndWait();
+            }
         }
 
-        Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
-        saveSuccess.setContentText(partName + " added successfully.");
-        saveSuccess.show();
-
-        savePartsButton.getScene().getWindow().hide();
+//        Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
+//        saveSuccess.setContentText(partName + " added successfully.");
+//        saveSuccess.show();
+//
+//        savePartsButton.getScene().getWindow().hide();
     }
 
     @FXML
