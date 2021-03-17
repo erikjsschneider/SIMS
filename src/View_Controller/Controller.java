@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -74,14 +75,29 @@ public class Controller implements Initializable {
     public void searchPartsButton(ActionEvent actionEvent) {
     }
 
+//    @FXML
+//    public void addPartButton(ActionEvent actionEvent) throws IOException {
+//        FXMLLoader addPartLoader = new FXMLLoader(getClass().getResource("AddParts.fxml"));
+//        Parent addPartRoot = (Parent) addPartLoader.load();
+//        Stage addPartStage = new Stage();
+//        addPartStage.initModality(Modality.APPLICATION_MODAL);
+//        addPartStage.setScene(new Scene(addPartRoot, 600, 600));
+//        addPartStage.show();
+//
+//    }
+
     @FXML
     public void addPartButton(ActionEvent actionEvent) throws IOException {
-        FXMLLoader addPartLoader = new FXMLLoader(getClass().getResource("AddParts.fxml"));
-        Parent addPartRoot = (Parent) addPartLoader.load();
-        Stage addPartStage = new Stage();
-        addPartStage.initModality(Modality.APPLICATION_MODAL);
-        addPartStage.setScene(new Scene(addPartRoot, 600, 600));
-        addPartStage.show();
+        Parent addPartRoot = FXMLLoader.load(getClass().getResource("AddParts.fxml"));
+
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(addPartRoot, 600, 600);
+        stage.setTitle("Add Parts");
+
+        stage.setScene(scene);
+
+        stage.show();
 
     }
 
