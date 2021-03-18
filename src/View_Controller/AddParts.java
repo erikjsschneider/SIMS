@@ -11,9 +11,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class AddParts extends Part {
 
@@ -60,6 +63,8 @@ public class AddParts extends Part {
 
     private int partId;
 
+    DecimalFormat currencyFormat = new DecimalFormat("###,##0.00");
+
     @FXML
     private void initialize() {
         partsGroup = new ToggleGroup();
@@ -78,7 +83,7 @@ public class AddParts extends Part {
     }
 
     @FXML
-    private void handleSavePartsButton() throws IOException {
+    private void handleSavePartsButton(ActionEvent actionEvent) throws IOException {
         String partName = partNameField.getText();
         String partInv = partInvField.getText();
         String partPrice = partPriceField.getText();
@@ -106,7 +111,12 @@ public class AddParts extends Part {
                 saveSuccess.setContentText(partName + " added successfully.");
                 saveSuccess.show();
 
-                savePartsButton.getScene().getWindow().hide();
+                Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
+                Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1200, 600);
+                stage.setTitle("S.I.M.S.");
+                stage.setScene(scene);
+                stage.show();
 
             } catch(Exception e) {
                 Alert wrongInput = new Alert(Alert.AlertType.ERROR);
@@ -136,7 +146,12 @@ public class AddParts extends Part {
                 saveSuccess.setContentText(partName + " added successfully.");
                 saveSuccess.show();
 
-                savePartsButton.getScene().getWindow().hide();
+                Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
+                Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1200, 600);
+                stage.setTitle("S.I.M.S.");
+                stage.setScene(scene);
+                stage.show();
 
             } catch(Exception e) {
                 Alert wrongInput = new Alert(Alert.AlertType.ERROR);
@@ -193,5 +208,20 @@ public class AddParts extends Part {
             machineIdText.setVisible(false);
             machineIdField.setVisible(false);
         }
+    }
+
+    public void enterPressed(KeyEvent keyEvent) throws IOException {
+        if (savePartsButton.isVisible()) {
+            if ((partNameField != null && partInvField != null && partPriceField != null && partMaxField != null &&
+                    partMinField != null && (companyNameField != null || machineIdField != null))
+                    && keyEvent.getCode() == KeyCode.ENTER) {
+                savePartsButton.fire();
+                keyEvent.consume();
+            }
+        }
+    }
+
+    public void updateText(KeyEvent keyEvent) {
+        this.partPriceField.setText(currencyFormat.format(Double.valueOf(partPriceField.getText())));
     }
 }

@@ -89,26 +89,22 @@ public class Controller implements Initializable {
     @FXML
     public void addPartButton(ActionEvent actionEvent) throws IOException {
         Parent addPartRoot = FXMLLoader.load(getClass().getResource("AddParts.fxml"));
-
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
         Scene scene = new Scene(addPartRoot, 600, 600);
         stage.setTitle("Add Parts");
-
         stage.setScene(scene);
-
         stage.show();
 
     }
 
     @FXML
     public void modifyPartButton(ActionEvent actionEvent) throws IOException {
-        FXMLLoader modPartLoader = new FXMLLoader(getClass().getResource("ModifyParts.fxml"));
-        Parent modPartRoot = (Parent) modPartLoader.load();
-        Stage modPartStage = new Stage();
-        modPartStage.initModality(Modality.APPLICATION_MODAL);
-        modPartStage.setScene(new Scene(modPartRoot, 600, 600));
-        modPartStage.show();
+        Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyParts.fxml"));
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(modPartLoader, 600, 600);
+        stage.setTitle("Add Parts");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -121,22 +117,22 @@ public class Controller implements Initializable {
 
     @FXML
     public void addProductButton(ActionEvent actionEvent) throws IOException {
-        FXMLLoader addProductLoader = new FXMLLoader(getClass().getResource("AddProducts.fxml"));
-        Parent addProductRoot = (Parent) addProductLoader.load();
-        Stage addProductStage = new Stage();
-        addProductStage.initModality(Modality.APPLICATION_MODAL);
-        addProductStage.setScene(new Scene(addProductRoot, 1200, 800));
-        addProductStage.show();
+        Parent modPartLoader = FXMLLoader.load(getClass().getResource("AddProducts.fxml"));
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(modPartLoader, 1200, 800);
+        stage.setTitle("Add Products");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void modifyProductButton(ActionEvent actionEvent) throws IOException {
-        FXMLLoader modProductLoader = new FXMLLoader(getClass().getResource("ModifyProducts.fxml"));
-        Parent modProductRoot = (Parent) modProductLoader.load();
-        Stage modProductStage = new Stage();
-        modProductStage.initModality(Modality.APPLICATION_MODAL);
-        modProductStage.setScene(new Scene(modProductRoot, 1200, 800));
-        modProductStage.show();
+        Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyProducts.fxml"));
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(modPartLoader, 1200, 800);
+        stage.setTitle("Modify Products");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
