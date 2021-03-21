@@ -1,5 +1,6 @@
 package View_Controller;
 
+import Model.Inhouse;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
@@ -54,10 +55,21 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TableView<Part> partsTable = new TableView<>(Inventory.getAllParts());
-        partId = new TableColumn<>("Part ID");
+
+        Inhouse part1 = new Inhouse(1, "Wheel", 30, 200.00, 20, 1, 1001);
+        Inventory.addPart(part1);
+
+        partsTable.setItems(Inventory.getAllParts());
+
         partId.setCellValueFactory(new PropertyValueFactory<>("partId"));
-        partsTable.getColumns().add(partId);
+        partName.setCellValueFactory(new PropertyValueFactory<>("partName"));
+        inventoryPart.setCellValueFactory(new PropertyValueFactory<>("inventoryPart"));
+        pricePart.setCellValueFactory(new PropertyValueFactory<>("pricePart"));
+
+//        TableView<Part> partsTable = new TableView<>(Inventory.getAllParts());
+//        partId = new TableColumn<>("Part ID");
+//        partId.setCellValueFactory(new PropertyValueFactory<>("partId"));
+//        partsTable.getColumns().add(partId);
     }
 
     @FXML

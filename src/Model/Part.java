@@ -10,12 +10,19 @@ public abstract class Part {
     private int min;
 
     public Part(int id, String name, int stock, double price, int max, int min) {
-        setId(id);
-        setName(name);
-        setStock(stock);
-        setPrice(price);
-        setMax(max);
-        setMin(min);
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+        this.max = max;
+        this.min = min;
+
+//        setId(id);
+//        setName(name);
+//        setStock(stock);
+//        setPrice(price);
+//        setMax(max);
+//        setMin(min);
     }
 
     public Part() {

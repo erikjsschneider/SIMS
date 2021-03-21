@@ -6,7 +6,9 @@ public class Inhouse extends Part {
 
     public Inhouse (int id, String name, int stock, double price, int max, int min, int machineId) {
         super(id, name, stock, price, max, min);
-        setMachineId(machineId);
+        this.machineId = machineId;
+
+//        setMachineId(machineId);
     }
 
     public Inhouse() {

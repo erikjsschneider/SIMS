@@ -13,17 +13,17 @@ import java.util.ListIterator;
 
 public class Inventory {
 
-    private static ObservableList<Part> allParts = FXCollections.observableArrayList(
-            new Inhouse(1, "First", 5, 2.50, 10, 1, 20));
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+//            new Inhouse(1, "First", 5, 2.50, 10, 1, 20));
 
     private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public static void addPart(Part newPart) {
-
+        allParts.add(newPart);
     }
 
     public void addProduct(Product newProduct) {
-
+        allProducts.add(newProduct);
     }
 
 //    public Part lookupPart(int partId) {
