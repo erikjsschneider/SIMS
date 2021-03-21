@@ -243,7 +243,7 @@ public class Inventory {
     public static void addDummyData() {
         Inhouse part1 = new Inhouse(1, "Wheel", 30, 200.00, 20, 1, 1001);
         Inventory.addPart(part1);
-        Inhouse part2 = new Inhouse(2, "Brake", 50, 140.00, 40, 1, 1002);
+        Outsourced part2 = new Outsourced(2, "Brake", 50, 140.00, 40, 1, "Centrals");
         Inventory.addPart(part2);
     }
 }
