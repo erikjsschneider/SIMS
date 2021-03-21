@@ -89,7 +89,13 @@ public class AddParts extends Part {
         String partPrice = partPriceField.getText();
         String partMax = partMaxField.getText();
         String partMin = partMinField.getText();
-        partId++;
+
+        partId = Inventory.getAllParts().size() + 1;
+
+//        for (int i = 0; i < Inventory.getAllParts().size(); i++) {
+//            if (i < )
+//        }
+//        partId++;
 
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
             try {
@@ -109,7 +115,7 @@ public class AddParts extends Part {
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
                 saveSuccess.setContentText(partName + " added successfully.");
-                saveSuccess.show();
+                saveSuccess.showAndWait();
 
                 Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
                 Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();

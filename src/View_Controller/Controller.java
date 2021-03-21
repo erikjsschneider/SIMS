@@ -55,16 +55,12 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        Inhouse part1 = new Inhouse(1, "Wheel", 30, 200.00, 20, 1, 1001);
-        Inventory.addPart(part1);
-
         partsTable.setItems(Inventory.getAllParts());
 
-        partId.setCellValueFactory(new PropertyValueFactory<>("partId"));
-        partName.setCellValueFactory(new PropertyValueFactory<>("partName"));
-        inventoryPart.setCellValueFactory(new PropertyValueFactory<>("inventoryPart"));
-        pricePart.setCellValueFactory(new PropertyValueFactory<>("pricePart"));
+        partId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        inventoryPart.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        pricePart.setCellValueFactory(new PropertyValueFactory<>("price"));
 
 //        TableView<Part> partsTable = new TableView<>(Inventory.getAllParts());
 //        partId = new TableColumn<>("Part ID");

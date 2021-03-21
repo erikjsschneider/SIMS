@@ -14,7 +14,6 @@ import java.util.ListIterator;
 public class Inventory {
 
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
-//            new Inhouse(1, "First", 5, 2.50, 10, 1, 20));
 
     private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
@@ -235,5 +234,16 @@ public class Inventory {
         };
 
         return allProducts;
+    }
+
+    static {
+        addDummyData();
+    }
+
+    public static void addDummyData() {
+        Inhouse part1 = new Inhouse(1, "Wheel", 30, 200.00, 20, 1, 1001);
+        Inventory.addPart(part1);
+        Inhouse part2 = new Inhouse(2, "Brake", 50, 140.00, 40, 1, 1002);
+        Inventory.addPart(part2);
     }
 }
