@@ -111,6 +111,14 @@ public class AddParts extends Part {
                 inhousePart.setMin(Integer.parseInt(partMin));
                 inhousePart.setMachineId(Integer.parseInt(machineId));
 
+                if (inhousePart.getStock() > inhousePart.getMax() || inhousePart.getStock() < inhousePart.getMin()) {
+                    Alert invalid = new Alert(Alert.AlertType.ERROR);
+                    invalid.setContentText("Invalid input amount. \n" +
+                            "Please enter an amount within the bounds of max and min.");
+                    invalid.showAndWait();
+                    return;
+                }
+
                 Inventory.addPart(inhousePart);
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
@@ -150,7 +158,7 @@ public class AddParts extends Part {
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
                 saveSuccess.setContentText(partName + " added successfully.");
-                saveSuccess.show();
+                saveSuccess.showAndWait();
 
                 Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
                 Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
@@ -182,8 +190,7 @@ public class AddParts extends Part {
         stage.setTitle("S.I.M.S.");
         stage.setScene(scene);
         stage.show();
-
-//        cancelPartsButton.getScene().getWindow().hide();
+        cancelPartsButton.fire();
     }
 
 //    public void partsTypeRadioButton() {

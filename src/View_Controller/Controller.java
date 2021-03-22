@@ -4,6 +4,8 @@ import Model.Inhouse;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +55,9 @@ public class Controller implements Initializable {
     @FXML
     public TableColumn<Product, Double> priceProd;
 
+    private ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private ObservableList<Product> allProducts = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         partsTable.setItems(Inventory.getAllParts());
@@ -83,17 +88,6 @@ public class Controller implements Initializable {
     public void searchPartsButton(ActionEvent actionEvent) {
     }
 
-//    @FXML
-//    public void addPartButton(ActionEvent actionEvent) throws IOException {
-//        FXMLLoader addPartLoader = new FXMLLoader(getClass().getResource("AddParts.fxml"));
-//        Parent addPartRoot = (Parent) addPartLoader.load();
-//        Stage addPartStage = new Stage();
-//        addPartStage.initModality(Modality.APPLICATION_MODAL);
-//        addPartStage.setScene(new Scene(addPartRoot, 600, 600));
-//        addPartStage.show();
-//
-//    }
-
     @FXML
     public void addPartButton(ActionEvent actionEvent) throws IOException {
         Parent addPartRoot = FXMLLoader.load(getClass().getResource("AddParts.fxml"));
@@ -107,6 +101,14 @@ public class Controller implements Initializable {
 
     @FXML
     public void modifyPartButton(ActionEvent actionEvent) throws IOException {
+        Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedPartMod == null) {
+            return;
+        }
+
+        
+
         Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyParts.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(modPartLoader, 600, 600);
@@ -117,6 +119,13 @@ public class Controller implements Initializable {
 
     @FXML
     public void deletePartButton(ActionEvent actionEvent) {
+        Part selectedPartDel = partsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedPartDel == null) {
+            return;
+        } else {
+            allParts.remove(selectedPartDel);
+        }
     }
 
     @FXML
