@@ -12,8 +12,11 @@
                 <padding>
                     <Insets top="10.0" />
                 </padding>
+            <toggleGroup>
+               <ToggleGroup fx:id="buttonSource" />
+            </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="outsourced" mnemonicParsing="false" onAction="#partsTypeRadioButtonChanged" text="Outsourced">
+            <RadioButton fx:id="outsourced" mnemonicParsing="false" onAction="#partsTypeRadioButtonChanged" text="Outsourced" toggleGroup="$buttonSource">
                 <padding>
                     <Insets left="100.0" top="10.0" />
                 </padding>
@@ -28,7 +31,7 @@
     <Label layoutX="70" layoutY="215" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Inv" />
     <TextField fx:id="partInvField" layoutX="170.0" layoutY="200.0" onKeyPressed="#enterPressed" prefHeight="45.0" prefWidth="160.0" promptText="Inv" style="-fx-border-style: solid" />
     <Label layoutX="70" layoutY="275" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Price/Cost" />
-    <TextField fx:id="partPriceField" layoutX="170.0" layoutY="260.0" onKeyPressed="#enterPressed" onInputMethodTextChanged="#updateText" prefHeight="45.0" prefWidth="160.0" promptText="Price/Cost" style="-fx-border-style: solid" />
+    <TextField fx:id="partPriceField" layoutX="170.0" layoutY="260.0" onInputMethodTextChanged="#updateText" onKeyPressed="#enterPressed" prefHeight="45.0" prefWidth="160.0" promptText="Price/Cost" style="-fx-border-style: solid" />
     <Label layoutX="70" layoutY="335" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Max" />
     <TextField fx:id="partMaxField" layoutX="170.0" layoutY="320.0" onKeyPressed="#enterPressed" prefHeight="45.0" prefWidth="120.0" promptText="Max" style="-fx-border-style: solid" />
     <Label layoutX="350" layoutY="335" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Min" />
