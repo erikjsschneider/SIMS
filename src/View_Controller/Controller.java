@@ -146,6 +146,9 @@ public class Controller implements Initializable {
         partsTable.setItems(partSearched);
         partSearchField.setText("");
 
+        System.out.println(Inventory.getAllParts());
+        System.out.println(partsTable.getItems());
+
     }
 
     private ObservableList<Part> searchParts(String partial) {
@@ -251,6 +254,9 @@ public class Controller implements Initializable {
             return;
         } else {
             Inventory.getAllParts().remove(selectedPartDel);
+            partsTable.setItems(Inventory.getAllParts());
+            System.out.println(Inventory.getAllParts());
+            System.out.println(partsTable.getItems());
         }
     }
 
