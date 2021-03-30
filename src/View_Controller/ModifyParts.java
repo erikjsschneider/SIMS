@@ -3,24 +3,31 @@ package View_Controller;
 import Model.Inhouse;
 import Model.Inventory;
 import Model.Outsourced;
+import Model.Part;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ModifyParts {
+public class ModifyParts implements Initializable {
 
     @FXML
     public RadioButton inhouse;
 
     @FXML
     public RadioButton outsourced;
+
+    @FXML
+    public TextField partIdField;
 
     @FXML
     public TextField partNameField;
@@ -57,17 +64,32 @@ public class ModifyParts {
 
     private ToggleGroup partsGroup;
 
+    private static Part modPart = null;
+
+//    public static void getSelectedPart(Part selectedPart) {
+//        modPart = selectedPart;
+
+//        partIdField.setText();
+//        String partName = partNameField.getText();
+//        String partInv = partInvField.getText();
+//        String partPrice = partPriceField.getText();
+//        String partMax = partMaxField.getText();
+//        String partMin = partMinField.getText();
+//    }
+
     @FXML
     private void initialize() {
         partsGroup = new ToggleGroup();
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
 
-        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
-                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
-                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
-                                .or(Bindings.isEmpty(machineIdField.textProperty())
-                                        .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+//        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
+//                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
+//                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
+//                                .or(Bindings.isEmpty(machineIdField.textProperty())
+//                                        .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+
+//        String result =
     }
 
     @FXML
@@ -176,5 +198,10 @@ public class ModifyParts {
             companyNameText.setVisible(true);
             companyNameField.setVisible(true);
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+//        String result
     }
 }

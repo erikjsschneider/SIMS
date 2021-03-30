@@ -217,7 +217,6 @@ public class AddParts extends Part {
         stage.setTitle("S.I.M.S.");
         stage.setScene(scene);
         stage.show();
-        cancelPartsButton.fire();
     }
 
 //    public void partsTypeRadioButton() {

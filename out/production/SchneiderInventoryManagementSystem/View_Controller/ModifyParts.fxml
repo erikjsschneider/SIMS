@@ -26,8 +26,8 @@
     </HBox>
 
     <Label layoutX="70" layoutY="95" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="ID"/>
-    <TextField disable="true" layoutX="170.0" layoutY="80.0" prefHeight="45.0" prefWidth="160.0"
-               style="-fx-background-color: darkgrey; -fx-border-style: solid" text=""/>
+    <TextField fx:id="partIdField" disable="true" layoutX="170.0" layoutY="80.0" prefHeight="45.0" prefWidth="160.0"
+               style="-fx-background-color: darkgrey; -fx-border-style: solid"/>
     <Label layoutX="70" layoutY="155" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="Name"/>
     <TextField fx:id="partNameField" layoutX="170.0" layoutY="140.0" prefHeight="45.0" prefWidth="160.0" promptText="Part Name"
                style="-fx-border-style: solid"/>

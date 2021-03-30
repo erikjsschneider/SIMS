@@ -1,9 +1,6 @@
 package View_Controller;
 
-import Model.Inhouse;
-import Model.Inventory;
-import Model.Part;
-import Model.Product;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,11 +67,6 @@ public class Controller implements Initializable {
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         inventoryPart.setCellValueFactory(new PropertyValueFactory<>("stock"));
         pricePart.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-//        TableView<Part> partsTable = new TableView<>(Inventory.getAllParts());
-//        partId = new TableColumn<>("Part ID");
-//        partId.setCellValueFactory(new PropertyValueFactory<>("partId"));
-//        partsTable.getColumns().add(partId);
     }
 
     @FXML
@@ -92,56 +84,21 @@ public class Controller implements Initializable {
     public void searchPartsButton(ActionEvent actionEvent) {
         String p = partSearchField.getText();
 
-        ObservableList<Part> partSearched = searchParts(p);
+//        ObservableList<Part> partSearched = searchParts(p);
+        ObservableList<Part> partSearched = Inventory.lookupPart(p);
 
         if (partSearched.size() == 0) {
             try {
                 int pId = Integer.parseInt(p);
-                Part pIdSearch = getIdSearch(pId);
+                Part pIdSearch = Inventory.pIdSearch;
                 if (pIdSearch != null) {
                     partSearched.add(pIdSearch);
                 }
-//                int pInv = Integer.parseInt(p);
-//                Part pInvSearch = getInvSearch(pInv);
-//                if (pInvSearch != null) {
-//                    partSearched.add(pInvSearch);
-//                }
-//                double pPrice = Double.parseDouble(p);
-//                Part pPriceSearch = getPriceSearch(pPrice);
-//                if (pPriceSearch != null) {
-//                    partSearched.add(pPriceSearch);
-//                }
             }
             catch (NumberFormatException e) {
                 // ignore
             }
         }
-
-//        if (partSearched.size() == 0) {
-//            try {
-//                int pInv = Integer.parseInt(p);
-//                Part pInvSearch = getInvSearch(pInv);
-//                if (pInvSearch != null) {
-//                    partSearched.add(pInvSearch);
-//                }
-//            }
-//            catch (NumberFormatException e) {
-//                // ignore
-//            }
-//        }
-//
-//        if (partSearched.size() == 0) {
-//            try {
-//                double pPrice = Double.parseDouble(p);
-//                Part pPriceSearch = getPriceSearch(pPrice);
-//                if (pPriceSearch != null) {
-//                    partSearched.add(pPriceSearch);
-//                }
-//            }
-//            catch (NumberFormatException e) {
-//                // ignore
-//            }
-//        }
 
         partsTable.setItems(partSearched);
         partSearchField.setText("");
@@ -151,59 +108,17 @@ public class Controller implements Initializable {
 
     }
 
-    private ObservableList<Part> searchParts(String partial) {
-        ObservableList<Part> results = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Inventory.getAllParts();
-
-        for (Part part : allParts) {
-            if (part.getName().contains(partial)) {
-                results.add(part);
-            }
-        }
-
-        return results;
-    }
-
-    private Part getIdSearch (int pId) {
-        ObservableList<Part> allParts = Inventory.getAllParts();
-
-        for (int i = 0; i < allParts.size(); i++) {
-            Part pIdSearch = allParts.get(i);
-
-            if (pIdSearch.getId() == pId) {
-                return pIdSearch;
-            }
-        }
-
-        return null;
-    }
-
-//    private Part getInvSearch (int pInv) {
+//    private ObservableList<Part> searchParts(String partial) {
+//        ObservableList<Part> results = FXCollections.observableArrayList();
 //        ObservableList<Part> allParts = Inventory.getAllParts();
 //
-//        for (int i = 0; i < allParts.size(); i++) {
-//            Part pIdSearch = allParts.get(i);
-//
-//            if (pIdSearch.getStock() == pInv) {
-//                return pIdSearch;
+//        for (Part part : allParts) {
+//            if (part.getName().contains(partial)) {
+//                results.add(part);
 //            }
 //        }
 //
-//        return null;
-//    }
-//
-//    private Part getPriceSearch (double pPrice) {
-//        ObservableList<Part> allParts = Inventory.getAllParts();
-//
-//        for (int i = 0; i < allParts.size(); i++) {
-//            Part pIdSearch = allParts.get(i);
-//
-//            if (pIdSearch.getPrice() == pPrice) {
-//                return pIdSearch;
-//            }
-//        }
-//
-//        return null;
+//        return results;
 //    }
 
     public void enterPressedPartSearch(KeyEvent keyEvent) throws IOException {
@@ -224,22 +139,59 @@ public class Controller implements Initializable {
 
     }
 
+    public Part sendModPart(Part moddedPart) {
+        Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
+        if (selectedPartMod instanceof Inhouse) {
+            System.out.println("Inhouse");
+            ((Inhouse) selectedPartMod).getMachineId();
+            System.out.println(((Inhouse) selectedPartMod).getMachineId());
+            return selectedPartMod;
+        }
+        if (selectedPartMod instanceof Outsourced) {
+            System.out.println("Outsourced");
+            ((Outsourced) selectedPartMod).getCompanyName();
+            System.out.println(((Outsourced) selectedPartMod).getCompanyName());
+            return selectedPartMod;
+        }
+
+//        ModifyParts.getSelectedPart(selectedPartMod);
+        System.out.println(selectedPartMod);
+        return selectedPartMod;
+    }
+
     @FXML
     public void modifyPartButton(ActionEvent actionEvent) throws IOException {
         Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
+        if (selectedPartMod instanceof Inhouse) {
+            System.out.println("Inhouse");
+            ((Inhouse) selectedPartMod).getMachineId();
+            System.out.println(((Inhouse) selectedPartMod).getMachineId());
+        }
+        if (selectedPartMod instanceof Outsourced) {
+            System.out.println("Outsourced");
+            ((Outsourced) selectedPartMod).getCompanyName();
+            System.out.println(((Outsourced) selectedPartMod).getCompanyName());
+        }
+
+//        ModifyParts.getSelectedPart(selectedPartMod);
+        System.out.println(selectedPartMod);
 
         if (selectedPartMod == null) {
+            System.out.println("None");
             return;
         }
 
         
-
-        Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyParts.fxml"));
-        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(modPartLoader, 600, 600);
-        stage.setTitle("Add Parts");
-        stage.setScene(scene);
-        stage.show();
+//        try {
+            Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyParts.fxml"));
+            Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(modPartLoader, 600, 600);
+            stage.setTitle("Modify Parts");
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Showing " + selectedPartMod.getId() + ", " + selectedPartMod.getName() + ", " + selectedPartMod.getPrice() + ", " + selectedPartMod.getStock() + ", " + selectedPartMod.getMax() + ", " + selectedPartMod.getMin());
+//        } catch(Exception e) {
+//        }
     }
 
     @FXML

@@ -17,6 +17,10 @@ public class Inventory {
 
     private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
+    public static Part pIdSearch = null;
+
+    public static ObservableList<Part> results = null;
+
     public static void addPart(Part newPart) {
         allParts.add(newPart);
     }
@@ -25,18 +29,37 @@ public class Inventory {
         allProducts.add(newProduct);
     }
 
-//    public Part lookupPart(int partId) {
-//
-//    }
+    public Part lookupPart(int partId) {
+        ObservableList<Part> allParts = Inventory.getAllParts();
+
+        for (int i = 0; i < allParts.size(); i++) {
+            Part pIdSearch = allParts.get(i);
+
+            if (pIdSearch.getId() == partId) {
+                return pIdSearch;
+            }
+        }
+
+        return null;
+    }
 //
 //    public Product lookupProduct(int productId) {
 //
 //    }
-//
-//    public ObservableList<Part> lookupPart(String partName) {
-//
-//    }
-//
+
+    public static ObservableList<Part> lookupPart(String partName) {
+        ObservableList<Part> results = FXCollections.observableArrayList();
+        ObservableList<Part> allParts = Inventory.getAllParts();
+
+        for (Part part : allParts) {
+            if (part.getName().contains(partName)) {
+                results.add(part);
+            }
+        }
+
+        return results;
+    }
+
 //    public ObservableList<Product> lookupProduct(String productName) {
 //
 //    }
