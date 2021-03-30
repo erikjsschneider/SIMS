@@ -84,13 +84,13 @@ public class Controller implements Initializable {
     public void searchPartsButton(ActionEvent actionEvent) {
         String p = partSearchField.getText();
 
-//        ObservableList<Part> partSearched = searchParts(p);
         ObservableList<Part> partSearched = Inventory.lookupPart(p);
 
         if (partSearched.size() == 0) {
             try {
                 int pId = Integer.parseInt(p);
-                Part pIdSearch = Inventory.pIdSearch;
+                Part pIdSearch = Inventory.lookupPart(pId);
+                System.out.println(pIdSearch);
                 if (pIdSearch != null) {
                     partSearched.add(pIdSearch);
                 }

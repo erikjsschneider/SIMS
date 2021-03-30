@@ -17,7 +17,7 @@ public class Inventory {
 
     private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
-    public static Part pIdSearch = null;
+    public static Part partIdResult = null;
 
     public static ObservableList<Part> results = null;
 
@@ -29,18 +29,27 @@ public class Inventory {
         allProducts.add(newProduct);
     }
 
-    public Part lookupPart(int partId) {
+    public static Part lookupPart(int partId) {
         ObservableList<Part> allParts = Inventory.getAllParts();
 
         for (int i = 0; i < allParts.size(); i++) {
             Part pIdSearch = allParts.get(i);
+            System.out.println("pidsearch " + pIdSearch.getId());
 
             if (pIdSearch.getId() == partId) {
-                return pIdSearch;
+                partIdResult = pIdSearch;
+                System.out.println("result in loop = " + partIdResult);
+                return partIdResult;
+            }
+
+            if (pIdSearch.getId() != partId) {
+                partIdResult = null;
+
             }
         }
 
-        return null;
+        System.out.println("result out of loop = " + partIdResult);
+        return partIdResult;
     }
 //
 //    public Product lookupProduct(int productId) {
