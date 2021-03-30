@@ -63,6 +63,8 @@ public class AddParts extends Part {
 
     private int partId;
 
+    public static int greatestPartId = 0;
+
     DecimalFormat currencyFormat = new DecimalFormat("###,##0.00");
 
     @FXML
@@ -78,8 +80,21 @@ public class AddParts extends Part {
                                 .and(Bindings.isEmpty(companyNameField.textProperty()))))));
     }
 
-    private void generatePartId() throws IOException {
+    private int generatePartId() throws IOException {
+        for (int i = 0; i < Inventory.getAllParts().stream().count(); i++) {
+            if (Inventory.getAllParts().get(i).getId() > greatestPartId) {
+                greatestPartId = Inventory.getAllParts().get(i).getId();
+                System.out.println("For if assignment = " + greatestPartId);
+            }
+        }
 
+        System.out.println("Greatest ID = " + greatestPartId);
+        System.out.println("Size array = " + Inventory.getAllParts().size());
+        System.out.println("Stream count = " + Inventory.getAllParts().stream().count());
+        partId = greatestPartId + 1;
+        greatestPartId = partId;
+        System.out.println(partId);
+        return partId;
     }
 
     @FXML
@@ -90,12 +105,20 @@ public class AddParts extends Part {
         String partMax = partMaxField.getText();
         String partMin = partMinField.getText();
 
-        partId = Inventory.getAllParts().size() + 1;
-
-//        for (int i = 0; i < Inventory.getAllParts().size(); i++) {
-//            if (i < )
+//        for (int i = 0; i < Inventory.getAllParts().stream().count(); i++) {
+//            if (Inventory.getAllParts().get(i).getId() > greatestPartId) {
+//                greatestPartId = Inventory.getAllParts().get(i).getId();
+//                System.out.println("For if assignment = " + greatestPartId);
+//            }
 //        }
-//        partId++;
+
+//        System.out.println("Greatest ID = " + greatestPartId);
+//        System.out.println("Size array = " + Inventory.getAllParts().size());
+//        System.out.println("Stream count = " + Inventory.getAllParts().stream().count());
+//        partId = greatestPartId + 1;
+//        greatestPartId = partId;
+//        System.out.println(partId);
+
 
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
             try {
@@ -103,7 +126,6 @@ public class AddParts extends Part {
 
                 Inhouse inhousePart = new Inhouse();
 
-                inhousePart.setId(partId);
                 inhousePart.setName(partName);
                 inhousePart.setStock(Integer.parseInt(partInv));
                 inhousePart.setPrice(Double.parseDouble(partPrice));
@@ -119,6 +141,8 @@ public class AddParts extends Part {
                     return;
                 }
 
+                partId = generatePartId();
+                inhousePart.setId(partId);
                 Inventory.addPart(inhousePart);
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
@@ -146,7 +170,6 @@ public class AddParts extends Part {
 
                 Outsourced outsourcedPart = new Outsourced();
 
-                outsourcedPart.setId(partId);
                 outsourcedPart.setName(partName);
                 outsourcedPart.setStock(Integer.parseInt(partInv));
                 outsourcedPart.setPrice(Double.parseDouble(partPrice));
@@ -154,6 +177,16 @@ public class AddParts extends Part {
                 outsourcedPart.setMin(Integer.parseInt(partMin));
                 outsourcedPart.setCompanyName(companyName);
 
+                if (outsourcedPart.getStock() > outsourcedPart.getMax() || outsourcedPart.getStock() < outsourcedPart.getMin()) {
+                    Alert invalid = new Alert(Alert.AlertType.ERROR);
+                    invalid.setContentText("Invalid input amount. \n" +
+                            "Please enter an amount within the bounds of max and min.");
+                    invalid.showAndWait();
+                    return;
+                }
+
+                partId = generatePartId();
+                outsourcedPart.setId(partId);
                 Inventory.addPart(outsourcedPart);
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
@@ -174,12 +207,6 @@ public class AddParts extends Part {
                 wrongInput.showAndWait();
             }
         }
-
-//        Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
-//        saveSuccess.setContentText(partName + " added successfully.");
-//        saveSuccess.show();
-//
-//        savePartsButton.getScene().getWindow().hide();
     }
 
     @FXML

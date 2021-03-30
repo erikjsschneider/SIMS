@@ -246,6 +246,7 @@ public class Controller implements Initializable {
     public void deletePartButton(ActionEvent actionEvent) {
         Part selectedPartDel = partsTable.getSelectionModel().getSelectedItem();
 
+
         if (selectedPartDel == null) {
             Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
             noDelSelection.setContentText("No part selected to delete. \n" +
