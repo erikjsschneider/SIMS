@@ -61,7 +61,7 @@ public class Inventory {
         ObservableList<Part> allParts = Inventory.getAllParts();
 
         for (Part part : allParts) {
-            if (part.getName().contains(partName)) {
+            if (part.getName().toLowerCase().contains(partName.toLowerCase())) {
                 results.add(part);
             }
         }
