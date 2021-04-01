@@ -108,19 +108,6 @@ public class Controller implements Initializable {
 
     }
 
-//    private ObservableList<Part> searchParts(String partial) {
-//        ObservableList<Part> results = FXCollections.observableArrayList();
-//        ObservableList<Part> allParts = Inventory.getAllParts();
-//
-//        for (Part part : allParts) {
-//            if (part.getName().contains(partial)) {
-//                results.add(part);
-//            }
-//        }
-//
-//        return results;
-//    }
-
     public void enterPressedPartSearch(KeyEvent keyEvent) throws IOException {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 searchParts.fire();
