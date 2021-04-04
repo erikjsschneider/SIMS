@@ -64,18 +64,30 @@ public class ModifyParts implements Initializable {
 
     private ToggleGroup partsGroup;
 
-    private static Part modPart = null;
+//    private static Part modPart = null;
 
-//    public static void getSelectedPart(Part selectedPart) {
+    private Part selectedPart;
+
+    public void setSelectedPart(Part selectedPart) {
+        this.selectedPart = selectedPart;
+//    }
 //        modPart = selectedPart;
 
-//        partIdField.setText();
+        if (selectedPart instanceof Inhouse) {
+            inhouse.arm();
+        }
+        partIdField.setText(new Integer(selectedPart.getId()).toString());
+        partNameField.setText(selectedPart.getName());
+        partInvField.setText(new Integer(selectedPart.getStock()).toString());
+        partPriceField.setText(new Double(selectedPart.getPrice()).toString());
+        partMaxField.setText(new Integer(selectedPart.getMax()).toString());
+        partMinField.setText(new Integer(selectedPart.getMin()).toString());
 //        String partName = partNameField.getText();
 //        String partInv = partInvField.getText();
 //        String partPrice = partPriceField.getText();
 //        String partMax = partMaxField.getText();
 //        String partMin = partMinField.getText();
-//    }
+    }
 
     @FXML
     private void initialize() {

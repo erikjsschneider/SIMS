@@ -176,6 +176,7 @@ public class Controller implements Initializable {
             stage.setTitle("Modify Parts");
             stage.setScene(scene);
             stage.show();
+//            ModifyParts modifyParts = modPartLoader.getId();
             System.out.println("Showing " + selectedPartMod.getId() + ", " + selectedPartMod.getName() + ", " + selectedPartMod.getPrice() + ", " + selectedPartMod.getStock() + ", " + selectedPartMod.getMax() + ", " + selectedPartMod.getMin());
 //        } catch(Exception e) {
 //        }
@@ -184,7 +185,6 @@ public class Controller implements Initializable {
     @FXML
     public void deletePartButton(ActionEvent actionEvent) {
         Part selectedPartDel = partsTable.getSelectionModel().getSelectedItem();
-
 
         if (selectedPartDel == null) {
             Alert noDelSelection = new Alert(Alert.AlertType.ERROR);

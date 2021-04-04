@@ -1,9 +1,11 @@
 package Model;
 
+import View_Controller.Controller;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 
 import java.util.Collection;
@@ -30,8 +32,6 @@ public class Inventory {
     }
 
     public static Part lookupPart(int partId) {
-        ObservableList<Part> allParts = Inventory.getAllParts();
-
         for (int i = 0; i < allParts.size(); i++) {
             Part pIdSearch = allParts.get(i);
             System.out.println("pidsearch " + pIdSearch.getId());
@@ -58,7 +58,6 @@ public class Inventory {
 
     public static ObservableList<Part> lookupPart(String partName) {
         ObservableList<Part> results = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Inventory.getAllParts();
 
         for (Part part : allParts) {
             if (part.getName().toLowerCase().contains(partName.toLowerCase())) {
@@ -81,10 +80,20 @@ public class Inventory {
 
     }
 
-//    public boolean deletePart(Part selectedPart) {
-//
-//    }
-//
+    public boolean deletePart(Part selectedPart) {
+        if (selectedPart == null) {
+            Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
+            noDelSelection.setContentText("No part selected to delete. \n" +
+                    "Please select a part to delete.");
+            noDelSelection.showAndWait();
+            return false;
+        } else {
+            allParts.remove(selectedPart);
+//            partsTable.setItems(Inventory.getAllParts());
+            return true;
+        }
+    }
+
 //    public boolean deleteProduct(Product selectedProduct) {
 //
 //    }
