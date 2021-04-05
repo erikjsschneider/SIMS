@@ -72,6 +72,9 @@ public class AddParts extends Part {
         partsGroup = new ToggleGroup();
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
+        inhouse.setSelected(true);
+        machineIdText.setVisible(true);
+        machineIdField.setVisible(true);
 
         savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
                 .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())

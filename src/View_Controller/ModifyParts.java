@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ModifyParts implements Initializable {
+public class ModifyParts extends Part {
 
     @FXML
     public RadioButton inhouse;
@@ -66,7 +66,7 @@ public class ModifyParts implements Initializable {
 
 //    private static Part modPart = null;
 
-    private Part selectedPart;
+    public Part selectedPart;
 
     public void setSelectedPart(Part selectedPart) {
         this.selectedPart = selectedPart;
@@ -74,8 +74,19 @@ public class ModifyParts implements Initializable {
 //        modPart = selectedPart;
 
         if (selectedPart instanceof Inhouse) {
-            inhouse.arm();
+            inhouse.setSelected(true);
+            machineIdText.setVisible(true);
+            machineIdField.setVisible(true);
+            machineIdField.setText((new Integer(((Inhouse) selectedPart).getMachineId())).toString());
         }
+
+        if (selectedPart instanceof Outsourced) {
+            outsourced.setSelected(true);
+            companyNameText.setVisible(true);
+            companyNameField.setVisible(true);
+            companyNameField.setText(((Outsourced) selectedPart).getCompanyName());
+        }
+
         partIdField.setText(new Integer(selectedPart.getId()).toString());
         partNameField.setText(selectedPart.getName());
         partInvField.setText(new Integer(selectedPart.getStock()).toString());
@@ -210,10 +221,5 @@ public class ModifyParts implements Initializable {
             companyNameText.setVisible(true);
             companyNameField.setVisible(true);
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-//        String result
     }
 }
