@@ -7,12 +7,12 @@ public class Product {
     private ObservableList<Part> associatedParts;
     private int id;
     private String name;
-    private double price;
     private int stock;
-    private int min;
+    private double price;
     private int max;
+    private int min;
 
-    public Product(int id, String name, double price, int stock, int min, int max) {
+    public Product(int id, String name, int stock, double price, int max, int min) {
 
     }
 

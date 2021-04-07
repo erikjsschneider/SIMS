@@ -17,7 +17,7 @@ public class Inventory {
 
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
 
-    private ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public static Part partIdResult = null;
 
@@ -27,7 +27,7 @@ public class Inventory {
         allParts.add(newPart);
     }
 
-    public void addProduct(Product newProduct) {
+    public static void addProduct(Product newProduct) {
         allProducts.add(newProduct);
     }
 
@@ -106,179 +106,11 @@ public class Inventory {
         this.allParts = allParts;
     }
 
-    public ObservableList<Product> getAllProducts() {
-        allProducts = new ObservableList<Product>() {
-            @Override
-            public void addListener(ListChangeListener<? super Product> listener) {
-
-            }
-
-            @Override
-            public void removeListener(ListChangeListener<? super Product> listener) {
-
-            }
-
-            @Override
-            public boolean addAll(Product... elements) {
-                return false;
-            }
-
-            @Override
-            public boolean setAll(Product... elements) {
-                return false;
-            }
-
-            @Override
-            public boolean setAll(Collection<? extends Product> col) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Product... elements) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Product... elements) {
-                return false;
-            }
-
-            @Override
-            public void remove(int from, int to) {
-
-            }
-
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Product> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Product product) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Product> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Product> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public Product get(int index) {
-                return null;
-            }
-
-            @Override
-            public Product set(int index, Product element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Product element) {
-
-            }
-
-            @Override
-            public Product remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Product> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Product> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Product> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-
-            @Override
-            public void addListener(InvalidationListener listener) {
-
-            }
-
-            @Override
-            public void removeListener(InvalidationListener listener) {
-
-            }
-        };
-
-        return allProducts;
-    }
+    public static ObservableList<Product> getAllProducts() { return allProducts; }
 
     static {
         addDummyData();
+        addProductData();
     }
 
     public static void addDummyData() {
@@ -286,5 +118,12 @@ public class Inventory {
         Inventory.addPart(part1);
         Outsourced part2 = new Outsourced(2, "Brake", 50, 140.00, 40, 1, "Centrals");
         Inventory.addPart(part2);
+    }
+
+    public static void addProductData() {
+        Product product1 = new Product(1, "Ford", 5, 18000, 25, 1);
+        Inventory.addProduct(product1);
+        Product product2 = new Product(1, "Tesla", 15, 48000, 25, 1);
+        Inventory.addProduct(product2);
     }
 }

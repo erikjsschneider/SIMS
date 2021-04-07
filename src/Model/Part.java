@@ -16,13 +16,6 @@ public abstract class Part {
         this.price = price;
         this.max = max;
         this.min = min;
-
-//        setId(id);
-//        setName(name);
-//        setStock(stock);
-//        setPrice(price);
-//        setMax(max);
-//        setMin(min);
     }
 
     public Part() {

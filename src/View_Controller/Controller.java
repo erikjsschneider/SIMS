@@ -62,11 +62,16 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         partsTable.setItems(Inventory.getAllParts());
+        prodTable.setItems(Inventory.getAllProducts());
 
         partId.setCellValueFactory(new PropertyValueFactory<>("id"));
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         inventoryPart.setCellValueFactory(new PropertyValueFactory<>("stock"));
         pricePart.setCellValueFactory(new PropertyValueFactory<>("price"));
+        productId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        productName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        inventoryProd.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        priceProd.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
     @FXML
