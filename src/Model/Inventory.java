@@ -94,10 +94,20 @@ public class Inventory {
         }
     }
 
-//    public boolean deleteProduct(Product selectedProduct) {
-//
-//    }
-//
+    public boolean deleteProduct(Product selectedProduct) {
+        if (selectedProduct == null) {
+            Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
+            noDelSelection.setContentText("No part selected to delete. \n" +
+                    "Please select a part to delete.");
+            noDelSelection.showAndWait();
+            return false;
+        } else {
+            allProducts.remove(selectedProduct);
+//            partsTable.setItems(Inventory.getAllParts());
+            return true;
+        }
+    }
+
     public static ObservableList<Part> getAllParts() {
         return allParts;
     }
@@ -123,7 +133,7 @@ public class Inventory {
     public static void addProductData() {
         Product product1 = new Product(1, "Ford", 5, 18000, 25, 1);
         Inventory.addProduct(product1);
-        Product product2 = new Product(1, "Tesla", 15, 48000, 25, 1);
+        Product product2 = new Product(2, "Tesla", 15, 48000, 25, 1);
         Inventory.addProduct(product2);
     }
 }

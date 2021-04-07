@@ -9,7 +9,7 @@
             fx:controller="View_Controller.AddProducts">
     <Label layoutX="45.0" layoutY="50.0" style="-fx-font-size: 20; -fx-font-family: SimSun;" text="Add Product"
           underline="true"/>
-    <Button fx:id="searchProductsButton" layoutX="620.0" layoutY="52.0" onAction="#handleSearchProductsButton" prefHeight="28.0"
+    <Button fx:id="searchProductsButton" layoutX="620.0" layoutY="52.0" onAction="#handleSearchPartsButton" prefHeight="28.0"
             prefWidth="70.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Search"/>
     <TextField layoutX="700.0" layoutY="52.5" prefHeight="29.0" prefWidth="250.0"
                style="-fx-border-style: solid; -fx-border-color: black;"/>
@@ -36,25 +36,25 @@
     <TableView fx:id="addPartTable" layoutX="500.0" layoutY="110.0" prefHeight="200.0" prefWidth="600.0"
                style="-fx-border-style: solid; -fx-border-color: black; -fx-grid-lines-visible: true;">
         <columns>
-            <TableColumn prefWidth="59.0" text="Part ID"/>
-            <TableColumn prefWidth="332.0" text="Part Name"/>
-            <TableColumn prefWidth="111.0" text="Inventory Level"/>
-            <TableColumn prefWidth="95.0" text="Price per Unit"/>
+            <TableColumn fx:id="availPartId" prefWidth="59.0" text="Part ID"/>
+            <TableColumn fx:id="availPartName" prefWidth="332.0" text="Part Name"/>
+            <TableColumn fx:id="availInventoryPart" prefWidth="111.0" text="Inventory Level"/>
+            <TableColumn fx:id="availPricePart" prefWidth="95.0" text="Price per Unit"/>
         </columns>
     </TableView>
-    <Button fx:id="addProductsButton" layoutX="1000.0" layoutY="330.0" onAction="#handleAddProductsButton" prefHeight="40.0"
+    <Button fx:id="addPartsButton" layoutX="1000.0" layoutY="330.0" onAction="#handleAddPartsButton" prefHeight="40.0"
             prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Add"/>
 
     <TableView fx:id="deletePartTable" layoutX="500.0" layoutY="420.0" prefHeight="200.0" prefWidth="600.0"
                style="-fx-border-style: solid; -fx-border-color: black; -fx-grid-lines-visible: true;">
         <columns>
-            <TableColumn prefWidth="59.0" text="Part ID"/>
-            <TableColumn prefWidth="332.0" text="Part Name"/>
-            <TableColumn prefWidth="111.0" text="Inventory Level"/>
-            <TableColumn prefWidth="95.0" text="Price per Unit"/>
+            <TableColumn fx:id="selPartId" prefWidth="59.0" text="Part ID"/>
+            <TableColumn fx:id="selPartName" prefWidth="332.0" text="Part Name"/>
+            <TableColumn fx:id="selInventoryPart" prefWidth="111.0" text="Inventory Level"/>
+            <TableColumn fx:id="selPricePart" prefWidth="95.0" text="Price per Unit"/>
         </columns>
     </TableView>
-    <Button fx:id="deleteProductsButton" layoutX="1000.0" layoutY="640.0" onAction="#handleDeleteProductsButton" prefHeight="40.0"
+    <Button fx:id="deletePartsButton" layoutX="1000.0" layoutY="640.0" onAction="#handleDeletePartsButton" prefHeight="40.0"
             prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Delete"/>
     <Button fx:id="saveProductsButton" layoutX="890.0" layoutY="700.0" onAction="#handleSaveProductsButton" prefHeight="40.0"
             prefWidth="90.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Save"/>

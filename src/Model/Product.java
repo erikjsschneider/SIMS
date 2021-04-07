@@ -13,8 +13,15 @@ public class Product {
     private int min;
 
     public Product(int id, String name, int stock, double price, int max, int min) {
-
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+        this.max = max;
+        this.min = min;
     }
+
+    public Product () {}
 
     public int getId() {
         return id;

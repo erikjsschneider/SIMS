@@ -231,5 +231,19 @@ public class Controller implements Initializable {
 
     @FXML
     public void deleteProductButton(ActionEvent actionEvent) {
+        Product selectedProductDel = prodTable.getSelectionModel().getSelectedItem();
+
+        if (selectedProductDel == null) {
+            Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
+            noDelSelection.setContentText("No product selected to delete. \n" +
+                    "Please select a product to delete.");
+            noDelSelection.showAndWait();
+            return;
+        } else {
+            Inventory.getAllProducts().remove(selectedProductDel);
+            prodTable.setItems(Inventory.getAllProducts());
+            System.out.println(Inventory.getAllProducts());
+            System.out.println(prodTable.getItems());
+        }
     }
 }
