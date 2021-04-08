@@ -99,8 +99,10 @@ public class AddProducts implements Initializable {
     @FXML
     public void handleAddPartsButton(ActionEvent actionEvent) {
         Part selectedPart = addPartTable.getSelectionModel().getSelectedItem();
-        allSelectedParts.add(selectedPart);
-        deletePartTable.setItems(allSelectedParts);
+        if (selectedPart != null) {
+            allSelectedParts.add(selectedPart);
+            deletePartTable.setItems(allSelectedParts);
+        }
 
         selPartId.setCellValueFactory(new PropertyValueFactory<>("id"));
         selPartName.setCellValueFactory(new PropertyValueFactory<>("name"));
