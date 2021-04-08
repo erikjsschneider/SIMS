@@ -99,9 +99,12 @@ public class Inventory {
         return results;
     }
 
-    public void updatePart(int index, Part selectedPart) {
-
-    }
+//    public void updatePart(int index, Part selectedPart) {
+//        for (int i = 0; i < allParts.size(); i++) {
+//            if (selectedPart)
+//        }
+//
+//    }
 
     public void updateProduct(int index, Product newProduct) {
 

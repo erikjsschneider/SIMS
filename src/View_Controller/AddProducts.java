@@ -158,11 +158,6 @@ public class AddProducts implements Initializable {
         }
     }
 
-//    @FXML
-//    public void handleAddPartsButton(ActionEvent actionEvent) {
-//
-//    }
-
     @FXML
     public void handleAddPartsButton(ActionEvent actionEvent) {
         Part selectedPart = addPartTable.getSelectionModel().getSelectedItem();
@@ -186,6 +181,7 @@ public class AddProducts implements Initializable {
 
     @FXML
     public void handleSaveProductsButton(ActionEvent actionEvent) throws IOException {
+        System.out.println("All sel parts " + allSelectedParts);
         String productName = productNameField.getText();
         String productInv = productInvField.getText();
         String productPrice = productPriceField.getText();
@@ -207,6 +203,11 @@ public class AddProducts implements Initializable {
                         "Please enter an amount within the bounds of max and min.");
                 invalid.showAndWait();
                 return;
+            }
+
+            for (Part part : allSelectedParts) {
+                newProduct.addAssociatedPart(part);
+                System.out.println("Associated parts : " + newProduct.getAllAssociatedParts());
             }
 
             productId = generateProductId();

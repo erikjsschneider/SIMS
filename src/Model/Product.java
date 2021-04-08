@@ -1,10 +1,12 @@
 package Model;
 
+import View_Controller.AddProducts;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
 
-    private ObservableList<Part> associatedParts;
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
     private int stock;
@@ -19,6 +21,16 @@ public class Product {
         this.price = price;
         this.max = max;
         this.min = min;
+    }
+
+    public Product(int id, String name, int stock, double price, int max, int min, ObservableList<Part> associatedParts) {
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+        this.max = max;
+        this.min = min;
+        this.associatedParts = associatedParts;
     }
 
     public Product () {}
@@ -72,14 +84,16 @@ public class Product {
     }
 
     public void addAssociatedPart(Part part) {
-
+        associatedParts.add(part);
     }
 
-//    public boolean deletedAssociatedPart(Part selectedAssociatedPart) {
-//
-//    }
-//
-//    public ObservableList<Part> getAllAssociatedParts() {
-//
-//    }
+    public void deletedAssociatedPart(Part selectedAssociatedPart) {
+        if (associatedParts.contains(selectedAssociatedPart)) {
+            associatedParts.remove(selectedAssociatedPart);
+        }
+    }
+
+    public ObservableList<Part> getAllAssociatedParts() {
+        return associatedParts;
+    }
 }

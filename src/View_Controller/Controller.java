@@ -143,8 +143,9 @@ public class Controller implements Initializable {
 
     }
 
-    public Part sendModPart(Part moddedPart) {
+    public Part sendModPart() {
         Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
+        System.out.println("Testing this " + partsTable.getItems().get(0).getName());
         if (selectedPartMod instanceof Inhouse) {
             System.out.println("Inhouse");
             ((Inhouse) selectedPartMod).getMachineId();
@@ -165,6 +166,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void modifyPartButton(ActionEvent actionEvent) throws IOException {
+        sendModPart();
         Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
         if (selectedPartMod instanceof Inhouse) {
             System.out.println("Inhouse");
