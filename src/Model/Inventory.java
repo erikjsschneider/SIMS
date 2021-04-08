@@ -116,7 +116,6 @@ public class Inventory {
             return false;
         } else {
             allParts.remove(selectedPart);
-//            partsTable.setItems(Inventory.getAllParts());
             return true;
         }
     }
@@ -130,7 +129,6 @@ public class Inventory {
             return false;
         } else {
             allProducts.remove(selectedProduct);
-//            partsTable.setItems(Inventory.getAllParts());
             return true;
         }
     }

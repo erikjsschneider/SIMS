@@ -9,9 +9,9 @@
             fx:controller="View_Controller.AddProducts">
     <Label layoutX="45.0" layoutY="50.0" style="-fx-font-size: 20; -fx-font-family: SimSun;" text="Add Product"
           underline="true"/>
-    <Button fx:id="searchProductsButton" layoutX="620.0" layoutY="52.0" onAction="#handleSearchPartsButton" prefHeight="28.0"
+    <Button fx:id="searchAvailablePartsButton" layoutX="620.0" layoutY="52.0" onAction="#handleSearchPartsButton" prefHeight="28.0"
             prefWidth="70.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Search"/>
-    <TextField layoutX="700.0" layoutY="52.5" prefHeight="29.0" prefWidth="250.0"
+    <TextField fx:id="searchAvailableParts" layoutX="700.0" layoutY="52.5" onKeyPressed="#enterPressedforSearch" prefHeight="29.0" prefWidth="250.0"
                style="-fx-border-style: solid; -fx-border-color: black;"/>
 
     <Label layoutX="30" layoutY="165" style="-fx-font-size: 14; -fx-font-family: SimSun;" text="ID"/>

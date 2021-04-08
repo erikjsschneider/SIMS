@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +20,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddProducts implements Initializable {
+
+    @FXML
+    public Button searchAvailablePartsButton;
+
+    @FXML
+    public TextField searchAvailableParts;
 
     @FXML
     public TextField productNameField;
@@ -116,7 +124,38 @@ public class AddProducts implements Initializable {
 
     @FXML
     public void handleSearchPartsButton(ActionEvent actionEvent) {
+        String p = searchAvailableParts.getText();
 
+        ObservableList<Part> partSearched = Inventory.lookupPart(p);
+
+        if (partSearched.size() == 0) {
+            try {
+                int pId = Integer.parseInt(p);
+                Part pIdSearch = Inventory.lookupPart(pId);
+                System.out.println(pIdSearch);
+                if (pIdSearch != null) {
+                    partSearched.add(pIdSearch);
+                }
+            }
+            catch (NumberFormatException e) {
+                // ignore
+            }
+        }
+
+        addPartTable.setItems(partSearched);
+        searchAvailableParts.setText("");
+
+        System.out.println(Inventory.getAllParts());
+        System.out.println(addPartTable.getItems());
+    }
+
+    public void enterPressedforSearch(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (searchAvailableParts.isFocused()) {
+                searchAvailablePartsButton.fire();
+            }
+            keyEvent.consume();
+        }
     }
 
 //    @FXML
