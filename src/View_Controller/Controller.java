@@ -57,7 +57,13 @@ public class Controller implements Initializable {
     public Button searchParts;
 
     @FXML
+    public Button searchProducts;
+
+    @FXML
     public TextField partSearchField;
+
+    @FXML
+    public TextField productSearchField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -113,9 +119,15 @@ public class Controller implements Initializable {
 
     }
 
-    public void enterPressedPartSearch(KeyEvent keyEvent) throws IOException {
+    public void enterPressedforSearch(KeyEvent keyEvent) throws IOException {
             if (keyEvent.getCode() == KeyCode.ENTER) {
-                searchParts.fire();
+                if (partSearchField.isFocused()) {
+                    searchParts.fire();
+                }
+
+                if (productSearchField.isFocused()) {
+                    searchProducts.fire();
+                }
                 keyEvent.consume();
             }
     }
@@ -207,6 +219,30 @@ public class Controller implements Initializable {
 
     @FXML
     public void searchProductsButton(ActionEvent actionEvent) {
+        String p = productSearchField.getText();
+
+        ObservableList<Product> productSearched = Inventory.lookupProduct(p);
+
+        if (productSearched.size() == 0) {
+            try {
+                int pId = Integer.parseInt(p);
+                Product pIdSearch = Inventory.lookupProduct(pId);
+                System.out.println(pIdSearch);
+                if (pIdSearch != null) {
+                    productSearched.add(pIdSearch);
+                }
+            }
+            catch (NumberFormatException e) {
+                // ignore
+            }
+        }
+
+        prodTable.setItems(productSearched);
+        productSearchField.setText("");
+
+        System.out.println(Inventory.getAllParts());
+        System.out.println(partsTable.getItems());
+
     }
 
     @FXML

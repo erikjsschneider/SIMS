@@ -21,6 +21,8 @@ public class Inventory {
 
     public static Part partIdResult = null;
 
+    public static Product productIdResult = null;
+
     public static ObservableList<Part> results = null;
 
     public static void addPart(Part newPart) {
@@ -51,10 +53,27 @@ public class Inventory {
         System.out.println("result out of loop = " + partIdResult);
         return partIdResult;
     }
-//
-//    public Product lookupProduct(int productId) {
-//
-//    }
+
+    public static Product lookupProduct(int productId) {
+        for (int i = 0; i < allProducts.size(); i++) {
+            Product pIdSearch = allProducts.get(i);
+            System.out.println("pidsearch " + pIdSearch.getId());
+
+            if (pIdSearch.getId() == productId) {
+                productIdResult = pIdSearch;
+                System.out.println("result in loop = " + productIdResult);
+                return productIdResult;
+            }
+
+            if (pIdSearch.getId() != productId) {
+                productIdResult = null;
+
+            }
+        }
+
+        System.out.println("result out of loop = " + productIdResult);
+        return productIdResult;
+    }
 
     public static ObservableList<Part> lookupPart(String partName) {
         ObservableList<Part> results = FXCollections.observableArrayList();
@@ -68,9 +87,17 @@ public class Inventory {
         return results;
     }
 
-//    public ObservableList<Product> lookupProduct(String productName) {
-//
-//    }
+    public static ObservableList<Product> lookupProduct(String productName) {
+        ObservableList<Product> results = FXCollections.observableArrayList();
+
+        for (Product product : allProducts) {
+            if (product.getName().toLowerCase().contains(productName.toLowerCase())) {
+                results.add(product);
+            }
+        }
+
+        return results;
+    }
 
     public void updatePart(int index, Part selectedPart) {
 

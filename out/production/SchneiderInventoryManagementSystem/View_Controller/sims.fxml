@@ -29,7 +29,7 @@
             <children>
                 <Label layoutX="14.0" layoutY="20.0" style="-fx-font-size: 18; -fx-font-family: SimSun;" text="Products" underline="true" />
                 <Button fx:id="searchProducts" layoutX="253.0" layoutY="17.0" onAction="#searchProductsButton" prefHeight="28.0" prefWidth="70.0" style="-fx-border-style: solid; -fx-border-color: black;" text="Search" />
-                <TextField layoutX="331.0" layoutY="17.0" prefHeight="28.0" prefWidth="149.0" style="-fx-border-style: solid; -fx-border-color: black;" />
+                <TextField fx:id="productSearchField" layoutX="331.0" layoutY="17.0" onKeyPressed="#enterPressedPartSearch" prefHeight="28.0" prefWidth="149.0" style="-fx-border-style: solid; -fx-border-color: black;" />
                 <TableView fx:id="prodTable" layoutX="15.0" layoutY="58.0" prefHeight="200.0" prefWidth="471.0">
                     <columns>
                         <TableColumn fx:id="productId" prefWidth="76.0" text="Product ID" />
