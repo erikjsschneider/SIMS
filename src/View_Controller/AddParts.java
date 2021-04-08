@@ -108,21 +108,6 @@ public class AddParts extends Part {
         String partMax = partMaxField.getText();
         String partMin = partMinField.getText();
 
-//        for (int i = 0; i < Inventory.getAllParts().stream().count(); i++) {
-//            if (Inventory.getAllParts().get(i).getId() > greatestPartId) {
-//                greatestPartId = Inventory.getAllParts().get(i).getId();
-//                System.out.println("For if assignment = " + greatestPartId);
-//            }
-//        }
-
-//        System.out.println("Greatest ID = " + greatestPartId);
-//        System.out.println("Size array = " + Inventory.getAllParts().size());
-//        System.out.println("Stream count = " + Inventory.getAllParts().stream().count());
-//        partId = greatestPartId + 1;
-//        greatestPartId = partId;
-//        System.out.println(partId);
-
-
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
             try {
                 String machineId = machineIdField.getText();
@@ -221,20 +206,6 @@ public class AddParts extends Part {
         stage.setScene(scene);
         stage.show();
     }
-
-//    public void partsTypeRadioButton() {
-//        if (inhouse.isSelected()) {
-//            machineIdText.setVisible(true);
-//            machineIdField.setVisible(true);
-//            companyNameText.setVisible(false);
-//            companyNameField.setVisible(false);
-//        } else if (outsourced.isSelected()) {
-//            companyNameText.setVisible(true);
-//            companyNameField.setVisible(true);
-//            machineIdText.setVisible(false);
-//            machineIdField.setVisible(false);
-//        }
-//    }
 
     public void partsTypeRadioButtonChanged() throws IOException {
         if (this.partsGroup.getSelectedToggle().equals(this.inhouse)) {
