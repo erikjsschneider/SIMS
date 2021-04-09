@@ -199,6 +199,10 @@ public class AddParts extends Part {
 
     @FXML
     private void handleCancelPartsButton(ActionEvent actionEvent) throws IOException {
+        Alert cancel = new Alert(Alert.AlertType.INFORMATION);
+        cancel.setContentText("Add part cancelled. Navigating to the main menu.");
+        cancel.showAndWait();
+
         Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
         Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200, 600);

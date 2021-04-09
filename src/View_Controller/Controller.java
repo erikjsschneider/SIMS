@@ -216,6 +216,10 @@ public class Controller implements Initializable {
             partsTable.setItems(Inventory.getAllParts());
             System.out.println(Inventory.getAllParts());
             System.out.println(partsTable.getItems());
+
+            Alert deleted = new Alert(Alert.AlertType.CONFIRMATION);
+            deleted.setContentText(selectedPartDel.getName() + " was deleted.");
+            deleted.showAndWait();
         }
     }
 
@@ -259,6 +263,13 @@ public class Controller implements Initializable {
 
     @FXML
     public void modifyProductButton(ActionEvent actionEvent) throws IOException {
+        Product selectedProductMod = prodTable.getSelectionModel().getSelectedItem();
+
+        if (selectedProductMod == null) {
+            System.out.println("None");
+            return;
+        }
+
         Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyProducts.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(modPartLoader, 1200, 800);
@@ -282,6 +293,10 @@ public class Controller implements Initializable {
             prodTable.setItems(Inventory.getAllProducts());
             System.out.println(Inventory.getAllProducts());
             System.out.println(prodTable.getItems());
+
+            Alert deleted = new Alert(Alert.AlertType.CONFIRMATION);
+            deleted.setContentText(selectedProductDel.getName() + " was deleted.");
+            deleted.showAndWait();
         }
     }
 }

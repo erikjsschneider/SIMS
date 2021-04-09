@@ -175,8 +175,19 @@ public class AddProducts implements Initializable {
     @FXML
     public void handleDeletePartsButton(ActionEvent actionEvent) {
         Part selectedPart = deletePartTable.getSelectionModel().getSelectedItem();
-        allSelectedParts.remove(selectedPart);
-        deletePartTable.setItems(allSelectedParts);
+        if (selectedPart == null) {
+            Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
+            noDelSelection.setContentText("No part selected to remove. \n" +
+                    "Please select a part to remove.");
+            noDelSelection.showAndWait();
+        } else {
+            allSelectedParts.remove(selectedPart);
+            deletePartTable.setItems(allSelectedParts);
+
+            Alert deleted = new Alert(Alert.AlertType.CONFIRMATION);
+            deleted.setContentText(selectedPart.getName() + " was removed.");
+            deleted.showAndWait();
+        }
     }
 
     @FXML
@@ -237,6 +248,10 @@ public class AddProducts implements Initializable {
 
     @FXML
     public void handleCancelProductsButton(ActionEvent actionEvent) throws IOException {
+        Alert cancel = new Alert(Alert.AlertType.INFORMATION);
+        cancel.setContentText("Add product cancelled. Navigating to the main menu.");
+        cancel.showAndWait();
+
         Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
         Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200, 600);

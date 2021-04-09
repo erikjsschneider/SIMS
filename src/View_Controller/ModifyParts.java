@@ -205,6 +205,10 @@ public class ModifyParts extends Part {
 
     @FXML
     public void handleCancelPartsButton(ActionEvent actionEvent) throws IOException {
+        Alert cancel = new Alert(Alert.AlertType.INFORMATION);
+        cancel.setContentText("Modify part cancelled. Navigating to the main menu.");
+        cancel.showAndWait();
+
         Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
         Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200, 600);
