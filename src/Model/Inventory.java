@@ -99,41 +99,22 @@ public class Inventory {
         return results;
     }
 
-//    public void updatePart(int index, Part selectedPart) {
-//        for (int i = 0; i < allParts.size(); i++) {
-//            if (selectedPart)
-//        }
-//
-//    }
-
-    public void updateProduct(int index, Product newProduct) {
-
+    public static void updatePart(int index, Part selectedPart) {
+        allParts.set(index, selectedPart);
     }
 
-    public boolean deletePart(Part selectedPart) {
-        if (selectedPart == null) {
-            Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
-            noDelSelection.setContentText("No part selected to delete. \n" +
-                    "Please select a part to delete.");
-            noDelSelection.showAndWait();
-            return false;
-        } else {
-            allParts.remove(selectedPart);
-            return true;
-        }
+    public static void updateProduct(int index, Product newProduct) {
+        allProducts.set(index, newProduct);
     }
 
-    public boolean deleteProduct(Product selectedProduct) {
-        if (selectedProduct == null) {
-            Alert noDelSelection = new Alert(Alert.AlertType.ERROR);
-            noDelSelection.setContentText("No part selected to delete. \n" +
-                    "Please select a part to delete.");
-            noDelSelection.showAndWait();
-            return false;
-        } else {
+    public static boolean deletePart(Part selectedPart) {
+        allParts.remove(selectedPart);
+        return true;
+    }
+
+    public static boolean deleteProduct(Product selectedProduct) {
             allProducts.remove(selectedProduct);
             return true;
-        }
     }
 
     public static ObservableList<Part> getAllParts() {
@@ -152,9 +133,9 @@ public class Inventory {
     }
 
     public static void addDummyData() {
-        Inhouse part1 = new Inhouse(1, "Wheel", 30, 200.00, 20, 1, 1001);
+        Inhouse part1 = new Inhouse(1, "Wheel", 30, 200.00, 40, 1, 1001);
         Inventory.addPart(part1);
-        Outsourced part2 = new Outsourced(2, "Brake", 50, 140.00, 40, 1, "Centrals");
+        Outsourced part2 = new Outsourced(2, "Brake", 50, 140.00, 100, 1, "Centrals");
         Inventory.addPart(part2);
     }
 

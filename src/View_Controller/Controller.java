@@ -143,44 +143,12 @@ public class Controller implements Initializable {
 
     }
 
-    public Part sendModPart() {
-        Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
-        System.out.println("Testing this " + partsTable.getItems().get(0).getName());
-        if (selectedPartMod instanceof Inhouse) {
-            System.out.println("Inhouse");
-            ((Inhouse) selectedPartMod).getMachineId();
-            System.out.println(((Inhouse) selectedPartMod).getMachineId());
-            return selectedPartMod;
-        }
-        if (selectedPartMod instanceof Outsourced) {
-            System.out.println("Outsourced");
-            ((Outsourced) selectedPartMod).getCompanyName();
-            System.out.println(((Outsourced) selectedPartMod).getCompanyName());
-            return selectedPartMod;
-        }
-
-//        ModifyParts.getSelectedPart(selectedPartMod);
-        System.out.println(selectedPartMod);
-        return selectedPartMod;
-    }
-
     @FXML
     public void modifyPartButton(ActionEvent actionEvent) throws IOException {
-        sendModPart();
         Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
-        if (selectedPartMod instanceof Inhouse) {
-            System.out.println("Inhouse");
-            ((Inhouse) selectedPartMod).getMachineId();
-            System.out.println(((Inhouse) selectedPartMod).getMachineId());
-        }
-        if (selectedPartMod instanceof Outsourced) {
-            System.out.println("Outsourced");
-            ((Outsourced) selectedPartMod).getCompanyName();
-            System.out.println(((Outsourced) selectedPartMod).getCompanyName());
-        }
-
-//        ModifyParts.getSelectedPart(selectedPartMod);
-        System.out.println(selectedPartMod);
+        ModifyParts.modSelectedPart(selectedPartMod);
+        ModifyParts.modSelPartIndex(partsTable.getItems().indexOf(selectedPartMod));
+        System.out.println(partsTable.getItems().indexOf(selectedPartMod));
 
         if (selectedPartMod == null) {
             System.out.println("None");
@@ -188,17 +156,17 @@ public class Controller implements Initializable {
         }
 
         
-//        try {
+        try {
             Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyParts.fxml"));
             Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(modPartLoader, 600, 600);
             stage.setTitle("Modify Parts");
             stage.setScene(scene);
             stage.show();
-//            ModifyParts modifyParts = modPartLoader.getId();
+
             System.out.println("Showing " + selectedPartMod.getId() + ", " + selectedPartMod.getName() + ", " + selectedPartMod.getPrice() + ", " + selectedPartMod.getStock() + ", " + selectedPartMod.getMax() + ", " + selectedPartMod.getMin());
-//        } catch(Exception e) {
-//        }
+        } catch(Exception e) {
+        }
     }
 
     @FXML
@@ -212,7 +180,7 @@ public class Controller implements Initializable {
             noDelSelection.showAndWait();
             return;
         } else {
-            Inventory.getAllParts().remove(selectedPartDel);
+            Inventory.deletePart(selectedPartDel);
             partsTable.setItems(Inventory.getAllParts());
             System.out.println(Inventory.getAllParts());
             System.out.println(partsTable.getItems());
@@ -253,9 +221,9 @@ public class Controller implements Initializable {
 
     @FXML
     public void addProductButton(ActionEvent actionEvent) throws IOException {
-        Parent modPartLoader = FXMLLoader.load(getClass().getResource("AddProducts.fxml"));
+        Parent addProdLoader = FXMLLoader.load(getClass().getResource("AddProducts.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(modPartLoader, 1200, 800);
+        Scene scene = new Scene(addProdLoader, 1200, 800);
         stage.setTitle("Add Products");
         stage.setScene(scene);
         stage.show();
@@ -270,9 +238,9 @@ public class Controller implements Initializable {
             return;
         }
 
-        Parent modPartLoader = FXMLLoader.load(getClass().getResource("ModifyProducts.fxml"));
+        Parent modProdLoader = FXMLLoader.load(getClass().getResource("ModifyProducts.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(modPartLoader, 1200, 800);
+        Scene scene = new Scene(modProdLoader, 1200, 800);
         stage.setTitle("Modify Products");
         stage.setScene(scene);
         stage.show();
@@ -289,7 +257,7 @@ public class Controller implements Initializable {
             noDelSelection.showAndWait();
             return;
         } else {
-            Inventory.getAllProducts().remove(selectedProductDel);
+            Inventory.deleteProduct(selectedProductDel);
             prodTable.setItems(Inventory.getAllProducts());
             System.out.println(Inventory.getAllProducts());
             System.out.println(prodTable.getItems());

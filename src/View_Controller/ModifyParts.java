@@ -12,13 +12,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
-public class ModifyParts extends Part {
+public class ModifyParts implements Initializable {
 
     @FXML
     public RadioButton inhouse;
@@ -64,59 +67,97 @@ public class ModifyParts extends Part {
 
     private ToggleGroup partsGroup;
 
-//    private static Part modPart = null;
+    private static Part modPart = null;
 
-    public Part selectedPart;
+    private static int modPartIndex = 0;
 
-    public void setSelectedPart(Part selectedPart) {
-        this.selectedPart = selectedPart;
+    DecimalFormat currencyFormat = new DecimalFormat("###,##0.00");
+
+//    public Part selectedPart = null;
+
+    public static void modSelectedPart(Part part) {
+        modPart = part;
+    }
+
+    public static void modSelPartIndex(int index) {
+        modPartIndex = index;
+    }
+
+//    public void setSelectedPart(Part selectedPart) {
+//        this.selectedPart = selectedPart;
 //    }
 //        modPart = selectedPart;
 
-        if (selectedPart instanceof Inhouse) {
-            inhouse.setSelected(true);
-            machineIdText.setVisible(true);
-            machineIdField.setVisible(true);
-            machineIdField.setText((new Integer(((Inhouse) selectedPart).getMachineId())).toString());
-        }
-
-        if (selectedPart instanceof Outsourced) {
-            outsourced.setSelected(true);
-            companyNameText.setVisible(true);
-            companyNameField.setVisible(true);
-            companyNameField.setText(((Outsourced) selectedPart).getCompanyName());
-        }
-
-        partIdField.setText(new Integer(selectedPart.getId()).toString());
-        partNameField.setText(selectedPart.getName());
-        partInvField.setText(new Integer(selectedPart.getStock()).toString());
-        partPriceField.setText(new Double(selectedPart.getPrice()).toString());
-        partMaxField.setText(new Integer(selectedPart.getMax()).toString());
-        partMinField.setText(new Integer(selectedPart.getMin()).toString());
+//        if (selectedPart instanceof Inhouse) {
+//            inhouse.setSelected(true);
+//            machineIdText.setVisible(true);
+//            machineIdField.setVisible(true);
+//            machineIdField.setText((new Integer(((Inhouse) selectedPart).getMachineId())).toString());
+//        }
+//
+//        if (selectedPart instanceof Outsourced) {
+//            outsourced.setSelected(true);
+//            companyNameText.setVisible(true);
+//            companyNameField.setVisible(true);
+//            companyNameField.setText(((Outsourced) selectedPart).getCompanyName());
+//        }
+//
+//        partIdField.setText(new Integer(selectedPart.getId()).toString());
+//        partNameField.setText(selectedPart.getName());
+//        partInvField.setText(new Integer(selectedPart.getStock()).toString());
+//        partPriceField.setText(new Double(selectedPart.getPrice()).toString());
+//        partMaxField.setText(new Integer(selectedPart.getMax()).toString());
+//        partMinField.setText(new Integer(selectedPart.getMin()).toString());
 //        String partName = partNameField.getText();
 //        String partInv = partInvField.getText();
 //        String partPrice = partPriceField.getText();
 //        String partMax = partMaxField.getText();
 //        String partMin = partMinField.getText();
-    }
+//    }
 
-    @FXML
-    private void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         partsGroup = new ToggleGroup();
         this.inhouse.setToggleGroup(partsGroup);
         this.outsourced.setToggleGroup(partsGroup);
 
-//        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
-//                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
-//                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
-//                                .or(Bindings.isEmpty(machineIdField.textProperty())
-//                                        .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+        if (modPart instanceof Inhouse) {
+            inhouse.setSelected(true);
+            partIdField.setText(Integer.toString(modPart.getId()));
+            partNameField.setText(modPart.getName());
+            partInvField.setText(Integer.toString(modPart.getStock()));
+            partPriceField.setText(Double.toString(modPart.getPrice()));
+            partMaxField.setText(Integer.toString(modPart.getMax()));
+            partMinField.setText(Integer.toString(modPart.getMin()));
+            machineIdText.setVisible(true);
+            machineIdField.setVisible(true);
+            machineIdField.setText((new Integer(((Inhouse) modPart).getMachineId())).toString());
+        }
 
-//        String result =
+        if (modPart instanceof Outsourced) {
+            outsourced.setSelected(true);
+            partIdField.setText(Integer.toString(modPart.getId()));
+            partNameField.setText(modPart.getName());
+            partInvField.setText(Integer.toString(modPart.getStock()));
+            partPriceField.setText(Double.toString(modPart.getPrice()));
+            partMaxField.setText(Integer.toString(modPart.getMax()));
+            partMinField.setText(Integer.toString(modPart.getMin()));
+            companyNameText.setVisible(true);
+            companyNameField.setVisible(true);
+            companyNameField.setText(((Outsourced) modPart).getCompanyName());
+        }
+
+        savePartsButton.disableProperty().bind(Bindings.isEmpty(partNameField.textProperty())
+                .or(Bindings.isEmpty(partInvField.textProperty())).or(Bindings.isEmpty(partPriceField.textProperty())
+                        .or(Bindings.isEmpty(partMaxField.textProperty()).or(Bindings.isEmpty(partMinField.textProperty()))
+                                .or(Bindings.isEmpty(machineIdField.textProperty())
+                                        .and(Bindings.isEmpty(companyNameField.textProperty()))))));
+
     }
 
     @FXML
     public void handleSavePartsButton(ActionEvent actionEvent) {
+        String partId = partIdField.getText();
         String partName = partNameField.getText();
         String partInv = partInvField.getText();
         String partPrice = partPriceField.getText();
@@ -131,6 +172,7 @@ public class ModifyParts extends Part {
 
                 Inhouse inhousePart = new Inhouse();
 
+                inhousePart.setId(Integer.parseInt(partId));
                 inhousePart.setName(partName);
                 inhousePart.setStock(Integer.parseInt(partInv));
                 inhousePart.setPrice(Double.parseDouble(partPrice));
@@ -146,7 +188,9 @@ public class ModifyParts extends Part {
                     return;
                 }
 
-                Inventory.addPart(inhousePart);
+                Inventory.updatePart(modPartIndex, inhousePart);
+                System.out.println("mod index = " + modPartIndex);
+                Inventory.deletePart(modPart);
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
                 saveSuccess.setContentText(partName + " added successfully.");
@@ -173,6 +217,7 @@ public class ModifyParts extends Part {
 
                 Outsourced outsourcedPart = new Outsourced();
 
+                outsourcedPart.setId(Integer.parseInt(partId));
                 outsourcedPart.setName(partName);
                 outsourcedPart.setStock(Integer.parseInt(partInv));
                 outsourcedPart.setPrice(Double.parseDouble(partPrice));
@@ -225,5 +270,20 @@ public class ModifyParts extends Part {
             companyNameText.setVisible(true);
             companyNameField.setVisible(true);
         }
+    }
+
+    public void enterPressed(KeyEvent keyEvent) throws IOException {
+        if (savePartsButton.isVisible()) {
+            if ((partNameField != null && partInvField != null && partPriceField != null && partMaxField != null &&
+                    partMinField != null && (companyNameField != null || machineIdField != null))
+                    && keyEvent.getCode() == KeyCode.ENTER) {
+                savePartsButton.fire();
+                keyEvent.consume();
+            }
+        }
+    }
+
+    public void updateText(KeyEvent keyEvent) {
+        this.partPriceField.setText(currencyFormat.format(Double.valueOf(partPriceField.getText())));
     }
 }
