@@ -214,6 +214,8 @@ public class AddProducts implements Initializable {
             newProduct.setId(productId);
             Inventory.addProduct(newProduct);
 
+            allSelectedParts.clear();
+
             Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
             saveSuccess.setContentText(productName + " added successfully.");
             saveSuccess.showAndWait();
