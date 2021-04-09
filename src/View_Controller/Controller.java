@@ -101,7 +101,6 @@ public class Controller implements Initializable {
             try {
                 int pId = Integer.parseInt(p);
                 Part pIdSearch = Inventory.lookupPart(pId);
-                System.out.println(pIdSearch);
                 if (pIdSearch != null) {
                     partSearched.add(pIdSearch);
                 }
@@ -113,10 +112,6 @@ public class Controller implements Initializable {
 
         partsTable.setItems(partSearched);
         partSearchField.setText("");
-
-        System.out.println(Inventory.getAllParts());
-        System.out.println(partsTable.getItems());
-
     }
 
     public void enterPressedforSearch(KeyEvent keyEvent) throws IOException {
@@ -148,10 +143,8 @@ public class Controller implements Initializable {
         Part selectedPartMod = partsTable.getSelectionModel().getSelectedItem();
         ModifyParts.modSelectedPart(selectedPartMod);
         ModifyParts.modSelPartIndex(partsTable.getItems().indexOf(selectedPartMod));
-        System.out.println(partsTable.getItems().indexOf(selectedPartMod));
 
         if (selectedPartMod == null) {
-            System.out.println("None");
             return;
         }
 
@@ -163,8 +156,6 @@ public class Controller implements Initializable {
             stage.setTitle("Modify Parts");
             stage.setScene(scene);
             stage.show();
-
-            System.out.println("Showing " + selectedPartMod.getId() + ", " + selectedPartMod.getName() + ", " + selectedPartMod.getPrice() + ", " + selectedPartMod.getStock() + ", " + selectedPartMod.getMax() + ", " + selectedPartMod.getMin());
         } catch(Exception e) {
         }
     }
@@ -182,8 +173,6 @@ public class Controller implements Initializable {
         } else {
             Inventory.deletePart(selectedPartDel);
             partsTable.setItems(Inventory.getAllParts());
-            System.out.println(Inventory.getAllParts());
-            System.out.println(partsTable.getItems());
 
             Alert deleted = new Alert(Alert.AlertType.CONFIRMATION);
             deleted.setContentText(selectedPartDel.getName() + " was deleted.");
@@ -201,7 +190,6 @@ public class Controller implements Initializable {
             try {
                 int pId = Integer.parseInt(p);
                 Product pIdSearch = Inventory.lookupProduct(pId);
-                System.out.println(pIdSearch);
                 if (pIdSearch != null) {
                     productSearched.add(pIdSearch);
                 }
@@ -213,10 +201,6 @@ public class Controller implements Initializable {
 
         prodTable.setItems(productSearched);
         productSearchField.setText("");
-
-        System.out.println(Inventory.getAllParts());
-        System.out.println(partsTable.getItems());
-
     }
 
     @FXML
@@ -232,18 +216,22 @@ public class Controller implements Initializable {
     @FXML
     public void modifyProductButton(ActionEvent actionEvent) throws IOException {
         Product selectedProductMod = prodTable.getSelectionModel().getSelectedItem();
+        ModifyProducts.modSelectedPart(selectedProductMod);
+        ModifyProducts.modSelProductIndex(prodTable.getItems().indexOf(selectedProductMod));
 
         if (selectedProductMod == null) {
-            System.out.println("None");
             return;
         }
 
-        Parent modProdLoader = FXMLLoader.load(getClass().getResource("ModifyProducts.fxml"));
-        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(modProdLoader, 1200, 800);
-        stage.setTitle("Modify Products");
-        stage.setScene(scene);
-        stage.show();
+        try {
+            Parent modProdLoader = FXMLLoader.load(getClass().getResource("ModifyProducts.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(modProdLoader, 1200, 800);
+            stage.setTitle("Modify Products");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+        }
     }
 
     @FXML
@@ -259,8 +247,6 @@ public class Controller implements Initializable {
         } else {
             Inventory.deleteProduct(selectedProductDel);
             prodTable.setItems(Inventory.getAllProducts());
-            System.out.println(Inventory.getAllProducts());
-            System.out.println(prodTable.getItems());
 
             Alert deleted = new Alert(Alert.AlertType.CONFIRMATION);
             deleted.setContentText(selectedProductDel.getName() + " was deleted.");

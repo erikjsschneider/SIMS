@@ -109,16 +109,11 @@ public class AddProducts implements Initializable {
         for (int i = 0; i < Inventory.getAllProducts().stream().count(); i++) {
             if (Inventory.getAllParts().get(i).getId() > greatestProductId) {
                 greatestProductId = Inventory.getAllParts().get(i).getId();
-                System.out.println("For if assignment = " + greatestProductId);
             }
         }
 
-        System.out.println("Greatest ID = " + greatestProductId);
-        System.out.println("Size array = " + Inventory.getAllParts().size());
-        System.out.println("Stream count = " + Inventory.getAllParts().stream().count());
         productId = greatestProductId + 1;
         greatestProductId = productId;
-        System.out.println(productId);
         return productId;
     }
 
@@ -132,7 +127,6 @@ public class AddProducts implements Initializable {
             try {
                 int pId = Integer.parseInt(p);
                 Part pIdSearch = Inventory.lookupPart(pId);
-                System.out.println(pIdSearch);
                 if (pIdSearch != null) {
                     partSearched.add(pIdSearch);
                 }
@@ -144,9 +138,6 @@ public class AddProducts implements Initializable {
 
         addPartTable.setItems(partSearched);
         searchAvailableParts.setText("");
-
-        System.out.println(Inventory.getAllParts());
-        System.out.println(addPartTable.getItems());
     }
 
     public void enterPressedforSearch(KeyEvent keyEvent) throws IOException {
@@ -218,7 +209,6 @@ public class AddProducts implements Initializable {
 
             for (Part part : allSelectedParts) {
                 newProduct.addAssociatedPart(part);
-                System.out.println("Associated parts : " + newProduct.getAllAssociatedParts());
             }
 
             productId = generateProductId();

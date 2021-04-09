@@ -30,6 +30,9 @@ public class ModifyProducts implements Initializable {
     public TextField searchAvailableParts;
 
     @FXML
+    public TextField productIdField;
+
+    @FXML
     public TextField productNameField;
 
     @FXML
@@ -93,14 +96,42 @@ public class ModifyProducts implements Initializable {
     @FXML
     public Button cancelProductsButton;
 
+    private static Product modProduct = null;
+
+    private static int modProductIndex = 0;
+
+    public static void modSelectedPart(Product product) {
+        modProduct = product;
+    }
+
+    public static void modSelProductIndex(int index) {
+        modProductIndex = index;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addPartTable.setItems(allAvailableParts);
+
+        productIdField.setText(Integer.toString(modProduct.getId()));
+        productNameField.setText(modProduct.getName());
+        productInvField.setText(Integer.toString(modProduct.getStock()));
+        productPriceField.setText(Double.toString(modProduct.getPrice()));
+        productMaxField.setText(Integer.toString(modProduct.getMax()));
+        productMinField.setText(Integer.toString(modProduct.getMin()));
+
+        for (Part part : modProduct.getAllAssociatedParts()) {
+            allSelectedParts.add(part);
+            deletePartTable.setItems(allSelectedParts);
+        }
 
         availPartId.setCellValueFactory(new PropertyValueFactory<>("id"));
         availPartName.setCellValueFactory(new PropertyValueFactory<>("name"));
         availInventoryPart.setCellValueFactory(new PropertyValueFactory<>("stock"));
         availPricePart.setCellValueFactory(new PropertyValueFactory<>("price"));
+        selPartId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        selPartName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        selInventoryPart.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        selPricePart.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
     @FXML
@@ -113,7 +144,6 @@ public class ModifyProducts implements Initializable {
             try {
                 int pId = Integer.parseInt(p);
                 Part pIdSearch = Inventory.lookupPart(pId);
-                System.out.println(pIdSearch);
                 if (pIdSearch != null) {
                     partSearched.add(pIdSearch);
                 }
@@ -125,9 +155,6 @@ public class ModifyProducts implements Initializable {
 
         addPartTable.setItems(partSearched);
         searchAvailableParts.setText("");
-
-        System.out.println(Inventory.getAllParts());
-        System.out.println(addPartTable.getItems());
     }
 
     public void enterPressedforSearch(KeyEvent keyEvent) throws IOException {
@@ -173,7 +200,7 @@ public class ModifyProducts implements Initializable {
 
     @FXML
     public void handleSaveProductsButton(ActionEvent actionEvent) {
-        System.out.println("All sel parts " + allSelectedParts);
+        String productId = productIdField.getText();
         String productName = productNameField.getText();
         String productInv = productInvField.getText();
         String productPrice = productPriceField.getText();
@@ -183,6 +210,7 @@ public class ModifyProducts implements Initializable {
         try {
             Product newProduct = new Product();
 
+            newProduct.setId(Integer.parseInt(productId));
             newProduct.setName(productName);
             newProduct.setStock(Integer.parseInt(productInv));
             newProduct.setPrice(Double.parseDouble(productPrice));
@@ -199,10 +227,11 @@ public class ModifyProducts implements Initializable {
 
             for (Part part : allSelectedParts) {
                 newProduct.addAssociatedPart(part);
-                System.out.println("Associated parts : " + newProduct.getAllAssociatedParts());
             }
 
-            Inventory.addProduct(newProduct);
+
+            Inventory.updateProduct(modProductIndex, newProduct);
+            Inventory.deleteProduct(modProduct);
 
             allSelectedParts.clear();
 
@@ -230,6 +259,8 @@ public class ModifyProducts implements Initializable {
         Alert cancel = new Alert(Alert.AlertType.INFORMATION);
         cancel.setContentText("Modify product cancelled. Navigating to the main menu.");
         cancel.showAndWait();
+
+        allSelectedParts.clear();
 
         Parent root = FXMLLoader.load(getClass().getResource("sims.fxml"));
         Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();

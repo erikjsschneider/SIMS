@@ -73,8 +73,6 @@ public class ModifyParts implements Initializable {
 
     DecimalFormat currencyFormat = new DecimalFormat("###,##0.00");
 
-//    public Part selectedPart = null;
-
     public static void modSelectedPart(Part part) {
         modPart = part;
     }
@@ -82,38 +80,6 @@ public class ModifyParts implements Initializable {
     public static void modSelPartIndex(int index) {
         modPartIndex = index;
     }
-
-//    public void setSelectedPart(Part selectedPart) {
-//        this.selectedPart = selectedPart;
-//    }
-//        modPart = selectedPart;
-
-//        if (selectedPart instanceof Inhouse) {
-//            inhouse.setSelected(true);
-//            machineIdText.setVisible(true);
-//            machineIdField.setVisible(true);
-//            machineIdField.setText((new Integer(((Inhouse) selectedPart).getMachineId())).toString());
-//        }
-//
-//        if (selectedPart instanceof Outsourced) {
-//            outsourced.setSelected(true);
-//            companyNameText.setVisible(true);
-//            companyNameField.setVisible(true);
-//            companyNameField.setText(((Outsourced) selectedPart).getCompanyName());
-//        }
-//
-//        partIdField.setText(new Integer(selectedPart.getId()).toString());
-//        partNameField.setText(selectedPart.getName());
-//        partInvField.setText(new Integer(selectedPart.getStock()).toString());
-//        partPriceField.setText(new Double(selectedPart.getPrice()).toString());
-//        partMaxField.setText(new Integer(selectedPart.getMax()).toString());
-//        partMinField.setText(new Integer(selectedPart.getMin()).toString());
-//        String partName = partNameField.getText();
-//        String partInv = partInvField.getText();
-//        String partPrice = partPriceField.getText();
-//        String partMax = partMaxField.getText();
-//        String partMin = partMinField.getText();
-//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -189,7 +155,6 @@ public class ModifyParts implements Initializable {
                 }
 
                 Inventory.updatePart(modPartIndex, inhousePart);
-                System.out.println("mod index = " + modPartIndex);
                 Inventory.deletePart(modPart);
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
@@ -225,7 +190,8 @@ public class ModifyParts implements Initializable {
                 outsourcedPart.setMin(Integer.parseInt(partMin));
                 outsourcedPart.setCompanyName(companyName);
 
-                Inventory.addPart(outsourcedPart);
+                Inventory.updatePart(modPartIndex, outsourcedPart);
+                Inventory.deletePart(modPart);
 
                 Alert saveSuccess = new Alert(Alert.AlertType.CONFIRMATION);
                 saveSuccess.setContentText(partName + " added successfully.");

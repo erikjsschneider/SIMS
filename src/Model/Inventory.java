@@ -36,11 +36,9 @@ public class Inventory {
     public static Part lookupPart(int partId) {
         for (int i = 0; i < allParts.size(); i++) {
             Part pIdSearch = allParts.get(i);
-            System.out.println("pidsearch " + pIdSearch.getId());
 
             if (pIdSearch.getId() == partId) {
                 partIdResult = pIdSearch;
-                System.out.println("result in loop = " + partIdResult);
                 return partIdResult;
             }
 
@@ -50,18 +48,15 @@ public class Inventory {
             }
         }
 
-        System.out.println("result out of loop = " + partIdResult);
         return partIdResult;
     }
 
     public static Product lookupProduct(int productId) {
         for (int i = 0; i < allProducts.size(); i++) {
             Product pIdSearch = allProducts.get(i);
-            System.out.println("pidsearch " + pIdSearch.getId());
 
             if (pIdSearch.getId() == productId) {
                 productIdResult = pIdSearch;
-                System.out.println("result in loop = " + productIdResult);
                 return productIdResult;
             }
 
@@ -71,7 +66,6 @@ public class Inventory {
             }
         }
 
-        System.out.println("result out of loop = " + productIdResult);
         return productIdResult;
     }
 
@@ -109,6 +103,12 @@ public class Inventory {
 
     public static boolean deletePart(Part selectedPart) {
         allParts.remove(selectedPart);
+        for (Product product: getAllProducts()) {
+            if (product.getAllAssociatedParts().contains(selectedPart)) {
+                product.getAllAssociatedParts().removeAll(selectedPart);
+            }
+
+        }
         return true;
     }
 
